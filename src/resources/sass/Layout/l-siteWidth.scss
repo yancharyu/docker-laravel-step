@@ -1,0 +1,11 @@
+.l-siteWidth {
+  width: $site-width;
+  max-width: 1100px;
+  margin: 0 auto;
+  @include mq(md) {
+    width: 90%;
+  }
+  @include mq() {
+    width: 98%;
+  }
+}

@@ -1,0 +1,84 @@
+// ==================================
+// base
+// ==================================
+
+html {
+  font-size: 62.5%;
+  @include mq() {
+    font-size: 57.5%;
+  }
+}
+
+body {
+  font-size: $font-size_default;
+}
+
+html,
+body {
+  width: 100%;
+  margin: 0 auto;
+  font-family: $font-family_default;
+  line-height: 1.6;
+  color: $font-color_default;
+  letter-spacing: 0.1em;
+  background-color: $background-color_page;
+  text-size-adjust: 100%;
+}
+
+p,
+a {
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: $font-color_default;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  transition: all 0.3s;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  vertical-align: middle;
+}
+
+a,
+img,
+input,
+select,
+textarea,
+button {
+  outline: none;
+}
+
+input,
+button,
+select,
+textarea {
+  border: none;
+}
+
+textarea {
+  display: block;
+}
+
+label {
+  display: block;
+}
+
+// オートコンプリート時の背景色を消す
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  transition: background-color 5000s ease-in-out 0s;
+}

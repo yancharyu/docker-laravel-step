@@ -1,0 +1,151 @@
+.p-show {
+  box-sizing: border-box;
+  width: 85%;
+  padding: $space_m;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: $background-color_default;
+  border: 1px solid $border-color_default;
+  @include mq(md) {
+    width: 100%;
+    padding: $space_s;
+  }
+  &__head {
+    margin-bottom: $space_l;
+  }
+  &__deleteButton {
+    font-size: $font-size_xxl;
+    cursor: pointer;
+    background-color: $background-color_default;
+    border: none;
+    @include mq() {
+      font-size: $font-size_xl;
+    }
+  }
+  &__title {
+    margin-top: $space_m;
+    margin-bottom: $space_l;
+    font-size: $font-size_xl;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+  }
+  &__category {
+    display: inline-block;
+    margin-bottom: $space_m;
+  }
+  &__time {
+    width: 100%;
+    font-size: $font-size_l;
+    word-break: break-all;
+    @include mq() {
+      font-size: $font-size_m;
+    }
+  }
+  &__subtitle {
+    margin-bottom: $space_s;
+    font-size: $font-size_l;
+    &--mb32 {
+      margin-bottom: $space_l;
+    }
+    &--txtCenter {
+      text-align: center;
+    }
+  }
+  &__description {
+    box-sizing: border-box;
+    height: 200px;
+    padding: $space_xs;
+    margin-bottom: $space_l;
+    overflow: scroll;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    background-color: $background-color_description;
+  }
+  &__stages {
+    position: relative;
+    margin-bottom: $space_xl;
+  }
+  &__stage {
+    padding: $space_s;
+  }
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  &__lockMessage {
+    font-size: $font-size_xl;
+    color: #fff;
+    @include mq(md) {
+      left: 23%;
+      font-size: $font-size_l;
+    }
+    @include mq() {
+      left: 17%;
+      font-size: $font-size_m;
+    }
+  }
+  &__btnContainer {
+    float: right;
+    margin-right: $space_l;
+    @include mq(md) {
+      margin-right: 0;
+    }
+  }
+
+  &__challengeButton {
+    background-color: $background-color_challenge-button;
+    &--isChallenge {
+      cursor: default;
+      background-color: $background-color_challenge-button-isChallenge;
+    }
+    &--isClear {
+      cursor: default;
+      background-color: $background-color_challenge-button-isClear;
+    }
+  }
+  &__foot {
+    margin-bottom: $space_l;
+    overflow: hidden;
+  }
+
+  &__iconContainer {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: -$space_m;
+    margin-bottom: -$space_m;
+    margin-left: -$space_m;
+    border-top: 1px solid $border-color_default;
+  }
+  &__iconItem {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 33.333%;
+    padding-top: $space_s;
+    padding-bottom: $space_s;
+    font-size: $font-size_l;
+    text-align: center;
+    transition: all 0.1s ease-in;
+    &:hover {
+      cursor: pointer;
+      background-color: #dcdcdc;
+    }
+    @include mq(md) {
+      width: 100%;
+      &:not(:last-child) {
+        border-bottom: 1px solid $border-color_default;
+      }
+    }
+    &--widthMax {
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,121 @@
+.c-panel {
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  width: 48.5%;
+  margin-bottom: $space_xl;
+  border: 2px solid $border-color_panel;
+  border-radius: 5px;
+  @include mq(md) {
+    width: 98%;
+  }
+  &--block {
+    width: 99%;
+  }
+  &:hover {
+    cursor: pointer;
+    transition: all 300ms ease;
+    transform: translateY(-4px);
+  }
+  &__wrapper {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    @include mq(md) {
+      display: block;
+      max-width: 750px;
+      margin: 0 auto;
+    }
+  }
+  &__head {
+    box-sizing: border-box;
+    padding: $space_xs;
+    overflow: hidden;
+    background-color: $background-color_panelHead;
+    border-bottom: 2px solid $border-color_panel;
+    @include mq() {
+      padding: $space_xs;
+    }
+    & > .c-avatar__pic {
+      width: 27px;
+      height: 25px;
+      @include mq(md) {
+        width: 24px;
+      }
+    }
+  }
+  &__title {
+    margin-bottom: $space_s;
+    font-size: $font-size_l;
+    word-break: break-all;
+    @include mq() {
+      margin-bottom: $space_xs;
+      font-size: $font-size_m;
+    }
+  }
+  &__body {
+    box-sizing: border-box;
+    padding: $space_s $space_xs;
+    background-color: $background-color_panelBody;
+  }
+  &__fromNow {
+    float: right;
+  }
+  &__foot {
+    box-sizing: border-box;
+    padding: $space_xs $space_s;
+    background-color: $background-color_panelFoot;
+    & > .c-panel__progress {
+      width: 100%;
+      height: 30px;
+      border: none;
+    }
+    & > .c-panel__progress::-webkit-progress-value {
+      background: -moz-linear-gradient(left, #00bfff, #afeeee, #00bfff);
+      background: -webkit-linear-gradient(left, #00bfff, #afeeee, #00bfff);
+      background: linear-gradient(to right, #00bfff, #afeeee, #00bfff);
+      border: 1px solid $border-color_default;
+    }
+    & > .c-panel__progress::-webkit-progress-bar {
+      background-color: #dcdcdc;
+    }
+    & > .c-panel__progress::-moz-progress-value {
+      background: -moz-linear-gradient(left, #00bfff, #afeeee, #00bfff);
+      background: -webkit-linear-gradient(left, #00bfff, #afeeee, #00bfff);
+      background: linear-gradient(to right, #00bfff, #afeeee, #00bfff);
+      border: 1px solid $border-color_default;
+    }
+    & > .c-panel__progress::-moz-progress-bar {
+      background-color: #dcdcdc;
+    }
+  }
+  &__achievements {
+    text-align: right;
+  }
+  &--isChallenge {
+    border: 5px solid #f00;
+  }
+  &--isClear {
+    border: 5px solid #1e90ff;
+  }
+  &__status {
+    position: absolute;
+    top: -27px;
+    right: -5px;
+    box-sizing: border-box;
+    display: inline-block;
+    height: 25px;
+    padding: 0 $space_xs;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 25px;
+    color: #fff;
+    border-radius: 5px 5px 0 0;
+    &--isChallenge {
+      background-color: #f00;
+    }
+    &--isClear {
+      background-color: #1e90ff;
+    }
+  }
+}

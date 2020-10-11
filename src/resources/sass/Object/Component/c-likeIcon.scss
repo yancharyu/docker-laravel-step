@@ -1,0 +1,12 @@
+.c-likeIcon {
+  font-size: $font-size_xl;
+  cursor: pointer;
+  &--isLiked {
+    color: $font-color_isLiked;
+    animation: isLikeAnimation 0.6s linear;
+  }
+  &__counts {
+    font-size: $font-size_m;
+    font-weight: bold;
+  }
+}

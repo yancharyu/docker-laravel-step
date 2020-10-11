@@ -1,0 +1,27 @@
+.p-top {
+  &__title {
+    margin-bottom: $space_xl;
+    font-size: $font-size_xl;
+    text-align: center;
+  }
+  &__search {
+    width: 100%;
+    margin: 0 auto $space_xxl;
+  }
+  &__subTitle {
+    margin-bottom: $space_xl;
+    font-size: $font-size_l;
+    text-align: center;
+  }
+  &__goTop {
+    width: 35%;
+    max-width: 400px;
+    margin: 0 auto;
+    @include mq(md) {
+      width: 60%;
+    }
+    @include mq() {
+      width: 80%;
+    }
+  }
+}

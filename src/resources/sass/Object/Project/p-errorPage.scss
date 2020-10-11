@@ -1,0 +1,30 @@
+.p-errorPage {
+  width: 90%;
+  margin: $space_3xl auto 0;
+  font-size: $font-size_l;
+  text-align: center;
+  @include mq() {
+    width: 100%;
+  }
+  &__head {
+    font-size: $font-size_3xl;
+    letter-spacing: 30px;
+    @include mq() {
+      font-size: $font-size_xxl;
+    }
+  }
+  &__body {
+    letter-spacing: 10px;
+  }
+  &__foot {
+    margin-top: $space_s;
+    letter-spacing: 5px;
+  }
+  &__link {
+    display: block;
+    margin-top: $space_xl;
+    font-size: $font-size_xl;
+    color: $font-color_link;
+    letter-spacing: 10px;
+  }
+}

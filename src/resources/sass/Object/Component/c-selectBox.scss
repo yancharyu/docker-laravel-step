@@ -1,0 +1,10 @@
+.c-selectBox {
+  width: 40%;
+  height: 32px;
+  font-size: $font-size_input;
+  border: 1px solid $border-color_form;
+  border-radius: 5px;
+  @include mq() {
+    width: 60%;
+  }
+}

@@ -1,0 +1,22 @@
+.p-stageSidebar {
+  box-sizing: border-box;
+  float: right;
+  width: 30%;
+  min-height: 480px;
+  padding: $space_m $space-s;
+  font-size: $font-size_m;
+  background-color: $background-color_default;
+  &__title {
+    margin-bottom: $space_m;
+    font-size: $font-size_l;
+    text-align: center;
+    word-wrap: break-word;
+  }
+  @include mq(md) {
+    float: none;
+    width: 100%;
+    max-width: 560px;
+    min-height: 0;
+    margin: 0 auto;
+  }
+}

@@ -1,0 +1,11 @@
+export const SET_USER = 'setUser';
+export const SET_MY_STEPS = 'setMySteps';
+export const SET_CHALLENGE_STEPS = 'setChallengeSteps';
+export const SET_LIKE_STEPS = 'setLikeSteps';
+export const SET_CLEAR_STEPS = 'setClearSteps';
+export const ADD_MY_STEPS = 'addMySteps';
+export const ADD_CHALLENGE_STEPS = 'addChallengeSteps';
+export const ADD_LIKE_STEPS = 'addLikeSteps';
+export const ADD_CLEAR_STEPS = 'addClearSteps';
+export const ADD_FOLLOWINGS = 'addFollowings';
+export const ADD_FOLLOWERS = 'addFollowers';

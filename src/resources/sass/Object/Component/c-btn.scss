@@ -1,0 +1,39 @@
+.c-btn {
+  box-sizing: border-box;
+  padding: $space_xs $space_s;
+  font-size: $font-size_m;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  background-color: $background-color_btn;
+  border-bottom: solid 4px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  transition: opacity 0.15s ease-in;
+  &:hover {
+    opacity: 0.8;
+    transition: opacity 0.15s ease-in;
+  }
+  &:active {
+    border-bottom: none;
+    transform: translateY(4px);
+  }
+  &--flRight {
+    float: right;
+  }
+  &--widthMax {
+    width: 100%;
+  }
+  &--primary {
+    background-color: $background-color_primary;
+    $border-color: $border-color_primary;
+  }
+  &--disabled {
+    border-bottom: none;
+    &:hover {
+      opacity: 1;
+    }
+    &:active {
+      transform: none;
+    }
+  }
+}

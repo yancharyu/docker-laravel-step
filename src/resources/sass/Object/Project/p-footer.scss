@@ -1,0 +1,14 @@
+.p-footer {
+  position: relative;
+  line-height: $footer-height;
+  background-color: $background-color_default;
+  border-top: 1px solid $border-color_default;
+
+  &__text {
+    text-align: center;
+    letter-spacing: 3px;
+    @include mq() {
+      font-size: $font-size_m;
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.c-checkbox {
+  margin: 0;
+  vertical-align: middle;
+  border: 1px solid #000;
+  &:hover {
+    cursor: pointer;
+  }
+  &__label {
+    display: inline-block;
+    cursor: pointer;
+  }
+}

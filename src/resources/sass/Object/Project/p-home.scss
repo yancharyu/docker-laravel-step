@@ -1,0 +1,140 @@
+.p-home {
+  &__heroImg {
+    position: relative;
+    width: 100%;
+    // 100 * 画像の高さ / 画像の幅
+    height: 480px;
+    margin-top: -$space_xl;
+    overflow: hidden;
+    background: url('/images/HERO_IMG.png') 0 0 no-repeat;
+    background-size: 100% 100%;
+    // retina対応
+    @include bg-retina() {
+      background: url('/images/HERO_IMG@2x.png') 0 0 no-repeat;
+      background-size: 100% 100%;
+    }
+
+    @include mq(md) {
+      height: 320px;
+    }
+    @include mq() {
+      height: 160px;
+    }
+  }
+  &__container {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 400px;
+    padding: 176px $space_xl;
+    background-color: $background-color_default;
+    &:nth-child(even) {
+      background-color: #f5f5f5;
+    }
+    &:last-of-type {
+      min-height: 300px;
+      margin-bottom: -$space_xl;
+    }
+    @include mq(md) {
+      padding: $space_xl $space_m;
+    }
+  }
+  &__about {
+    width: 80%;
+    margin: 0 auto;
+    @include mq(md) {
+      width: 100%;
+    }
+  }
+  &__auth {
+    color: #fff;
+    text-align: center;
+    background-color: $background-color_main !important;
+  }
+  &__title {
+    width: 100%;
+    margin-bottom: 128px;
+    font-size: $font-size_3xl;
+    text-align: center;
+    @include mq(md) {
+      margin-bottom: $space_xl;
+      font-size: $font-size_xl;
+    }
+  }
+  &__mainText {
+    font-size: $font-size_xl;
+    line-height: 45px;
+    @include mq() {
+      font-size: $font-size_m;
+    }
+  }
+  &__registerButton {
+    width: 50%;
+    height: 64px;
+    & > a {
+      display: inline-block;
+      width: 100%;
+      font-size: $font-size_xl;
+      color: #fff;
+    }
+  }
+  &__post {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    margin-top: $space_xxl;
+    font-size: $font-size_xl;
+    @include mq(md) {
+      display: block;
+      font-size: $font-size_l;
+      text-align: center;
+    }
+    & > p {
+      box-sizing: border-box;
+      width: 30%;
+      @include mq(md) {
+        width: 100%;
+        margin-bottom: $space_xxl;
+      }
+    }
+  }
+  &__postIcon {
+    width: 100%;
+    margin-bottom: $space_xl;
+    font-size: $font-size_4xl;
+    text-align: center;
+    @include mq(md) {
+      margin-bottom: $space_m;
+    }
+    &--book {
+      color: #ff8c00;
+    }
+    &--human {
+      color: #ffd700;
+    }
+    &--hourglass {
+      color: #1e90ff;
+    }
+  }
+  &__errMsg {
+    margin-left: $space_xs;
+  }
+  &__example {
+    box-sizing: border-box;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    font-size: $font-size_xl;
+    @include mq(md) {
+      display: block;
+      font-size: $font-size_l;
+    }
+    & > p {
+      width: 30%;
+      @include mq(md) {
+        width: 100%;
+        margin-bottom: $space_xxl;
+        text-align: center;
+      }
+    }
+  }
+}

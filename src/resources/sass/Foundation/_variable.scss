@@ -1,0 +1,84 @@
+// ====================   layout   =========================
+$site-width: 82%;
+$header-height: 64px;
+$footer-height: 72px;
+
+// ====================   color   ===========================
+$font-color_error: #f00;
+$font-color_require: #f00;
+$font-color_default: rgba(0, 0, 0);
+$font-color_main: #ffffe0;
+$font-color_link: #1e90ff;
+$font-color_isLiked: #ffa500;
+$font-color_category: #ffa500;
+$font-color_listItem: #20b2aa;
+
+// ====================   background-color   ===================
+$background-color_default: #fff;
+$background-color_error: #f00;
+$background-color_danger: #f00;
+$background-color_accent: #000;
+$background-color_primary: #007bff;
+$background-color_page: rgba(245, 245, 245);
+$background-color_btn: rgba(0, 0, 0, 0.8);
+$background-color_flashMessage: rgba(135, 206, 250, 0.6);
+$background-color_main: #ffa500;
+$background-color_panelHead: #fff;
+$background-color_panelBody: #ffa500;
+$background-color_panelFoot: #fff;
+$background-color_search-btn: #1e90ff;
+$background-color_search-btn-hover: #4169e1;
+$background-color_form: #fff;
+$background-color_input: #fff;
+$background-color_description: #f5f5f5;
+$background-color_summary: #dcdcdc;
+$background-color_stage-hover: #f5f5f5;
+$background-color_challenge-button: #ff6347;
+$background-color_challenge-button-isChallenge: #f00;
+$background-color_challenge-button-isClear: #1e90ff;
+$background-color_overlay: rgba(0, 0, 0, 0.5);
+$background-color_twitter: #00acee;
+$background-color_isNotFollow: #dcdcdc;
+
+// ====================   border-color   ===================
+$border-color_default: rgba(0, 0, 0, 0.4);
+$border-color_error: #f00;
+$border-color_form: #a9a9a9;
+$border-color_panel: #696969;
+$border-color_pic: rgba(0, 0, 0, 0.7);
+$border-color_category: #ffa500;
+$border-color_primary: #007bff;
+
+// ====================   background-radius   ===================
+$border-radius_oval: 9999px;
+
+// ====================   fontawesome   =========================
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+
+// ====================   font   =========================
+$font-family_default: 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', meiryo, メイリオ, osaka, 'MS PGothic', arial,
+  helvetica, sans-serif;
+
+$font-size_default: 1.6rem; // 16px;
+$font-size_bold: 1.8rem; // 18px
+$font-size_xs: 0.8rem; // 8px
+$font-size_s: 1.2rem; // 12px
+$font-size_m: 1.6rem; // 16px
+$font-size_input: 1.8rem; //18px;
+$font-size_l: 2rem; // 20px
+$font-size_xl: 2.6rem; // 26px
+$font-size_xxl: 3.2rem; // 32px
+$font-size_3xl: 3.8rem; // 38px
+$font-size_4xl: 4.6rem; // 46px
+
+// ====================   space   =========================
+
+$space_xxs: 4px;
+$space_xs: 8px;
+$space_s: 16px;
+$space_m: 24px;
+$space_l: 32px;
+$space_xl: 48px;
+$space_xxl: 64px;
+$space_3xl: 80px;
+$space_4xl: 96px;

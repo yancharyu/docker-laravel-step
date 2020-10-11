@@ -1,0 +1,148 @@
+.p-profile {
+  width: 100%;
+  overflow: hidden;
+  @include mq(md) {
+    width: 80%;
+    margin: 0 auto;
+  }
+  @include mq() {
+    width: 100%;
+  }
+  &__sidebar {
+    box-sizing: border-box;
+    float: left;
+    width: 31%;
+    min-height: 600px;
+    padding: $space_xl $space_m $space_l;
+    background-color: $background-color_default;
+    @include mq(md) {
+      float: none;
+      width: 100%;
+      min-height: 0;
+      padding: $space_l $space_m;
+      margin-bottom: $space_l;
+    }
+  }
+  &__picContainer {
+    position: relative;
+    box-sizing: border-box;
+    width: 100%;
+    padding: $space_l 0;
+    margin: 0 auto $space_s;
+    background-color: $background-color_main;
+    border-radius: 15px;
+  }
+  &__pic {
+    display: block;
+    width: 95%;
+    max-width: 185px;
+    height: 190px;
+    margin: 0 auto;
+    margin-bottom: $space_l;
+    border-radius: 50%;
+    @include mq(md) {
+      width: 60%;
+      max-width: 200px;
+      margin-bottom: $space_m;
+    }
+    @include mq() {
+      width: 58%;
+      max-width: 160px;
+      height: 160px;
+    }
+  }
+  &__name {
+    margin: $space_s auto 0;
+    margin-bottom: $space_s;
+    font-size: $font-size_xl;
+    text-align: center;
+    word-wrap: break-word;
+  }
+
+  &__main {
+    box-sizing: border-box;
+    float: right;
+    width: 66%;
+    min-height: 600px;
+    padding: $space_m;
+    background-color: $background-color_default;
+    @include mq(md) {
+      float: none;
+      width: 100%;
+      min-height: 0;
+    }
+    & > .c-panel__wrapper {
+      display: block;
+      & > .c-panel {
+        width: 100%;
+      }
+    }
+  }
+  &__introductionContainer {
+    position: relative;
+    min-height: 100px;
+    padding: 0.2em 0.5em;
+    margin-top: $space_xs;
+    margin-bottom: $space_l;
+    color: #454545;
+    background: #fff0cd;
+    border: dashed 2px white;
+    box-shadow: 0 0 0 5px #fff0cd;
+
+    &::after {
+      position: absolute;
+      top: -7px;
+      right: -7px;
+      content: '';
+      border-color: #ffdb88 #fff #ffdb88;
+      border-style: solid;
+      border-width: 0 15px 15px 0;
+      box-shadow: -1px 1px 1px rgba(0, 0, 0, 0.15);
+    }
+  }
+  &__introduction {
+    word-break: break-all;
+  }
+  &__title {
+    margin-bottom: $space_xl;
+    font-size: $font-size_l;
+    text-align: center;
+    word-break: break-all;
+  }
+  &__noSteps {
+    font-size: $font-size_l;
+    text-align: center;
+  }
+  &__followButton {
+    box-sizing: border-box;
+    width: 100%;
+    padding: $space_xs $space_s;
+    font-size: $font-size_m;
+    font-weight: bold;
+    color: #0000cd;
+    text-align: center;
+    letter-spacing: 2.5px;
+    cursor: pointer;
+    background-color: $background-color_default;
+    border: 1px solid #0000cd;
+    border-radius: $border-radius_oval;
+    &:hover {
+      opacity: 0.8;
+      transition: opacity 0.15s ease-in;
+    }
+    &--isFollow {
+      color: $font-color_main;
+      background-color: #0000cd;
+    }
+  }
+  &__followedMessage {
+    box-sizing: border-box;
+    padding: $space_xxs;
+    margin: 0 auto;
+    margin-top: $space_m;
+    font-weight: bold;
+    text-align: center;
+    background-color: #dcdcdc;
+    border-radius: 3px;
+  }
+}

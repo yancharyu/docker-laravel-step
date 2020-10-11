@@ -1,0 +1,48 @@
+.c-form {
+  box-sizing: border-box;
+  width: 43%;
+  padding: $space_l $space_l $space_s;
+  margin: 0 auto;
+  background-color: $background-color_form;
+  border: 1px solid $border-color_form;
+  @include mq(md) {
+    width: 97%;
+    max-width: 560px;
+    padding: $space_m;
+  }
+  @include mq() {
+    padding: $space_s;
+  }
+  &__title {
+    margin-bottom: $space_xl;
+    font-size: $font-size_xl;
+    text-align: center;
+  }
+  &__subTitle {
+    margin-bottom: $space_l;
+    font-size: $font-size_l;
+    text-align: center;
+  }
+  &__item {
+    margin-bottom: $space_m;
+  }
+  &__link {
+    display: inline-block;
+    color: $font-color_link;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &--large {
+    width: 75%;
+    @include mq(md) {
+      width: 85%;
+      max-width: 560px;
+    }
+    @include mq() {
+      width: 95%;
+      max-width: 400px;
+    }
+  }
+}

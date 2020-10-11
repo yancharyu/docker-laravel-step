@@ -1,0 +1,43 @@
+.p-verified {
+  width: 90%;
+  max-width: 560px;
+  margin: $space_3xl auto;
+  text-align: center;
+  @include mq(md) {
+    width: 100%;
+  }
+  &__title {
+    margin-bottom: $space_xl;
+    font-size: $font-size_3xl;
+    letter-spacing: 10px;
+    @include mq() {
+      font-size: $font-size_xxl;
+    }
+  }
+  &__check-square {
+    font-size: $font-size_xxl;
+    color: #3cb371;
+    @include mq() {
+      font-size: $font-size_xl;
+    }
+  }
+  &__subTitle {
+    display: inline-block;
+    margin-bottom: $space_3xl;
+    font-size: $font-size_l;
+    vertical-align: top;
+    @include mq() {
+      font-size: $font-size_m;
+    }
+  }
+  &__link {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    font-size: $font-size_l;
+    @include mq(md) {
+      width: 80%;
+      font-size: $font-size_m;
+    }
+  }
+}

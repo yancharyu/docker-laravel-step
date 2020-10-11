@@ -1,0 +1,54 @@
+.p-header {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: $space_3xl;
+  padding-left: $space_3xl;
+  margin: 0 auto;
+  line-height: 64px;
+  background-color: $background-color_default;
+  border-bottom: 1px solid $border-color_default;
+  @include mq(md) {
+    padding-right: $space_xl;
+    padding-left: $space_xl;
+  }
+  @include mq() {
+    padding-right: $space_s;
+    padding-left: $space_s;
+  }
+  &__logo {
+    display: inline-block;
+    width: 13%;
+    max-width: 90px;
+    font-family: 'Notable', sans-serif;
+    font-size: $font-size_l;
+    color: $font-color_main;
+    vertical-align: top;
+    @include mq(md) {
+      width: 20%;
+    }
+    @include mq() {
+      width: 25%;
+    }
+  }
+  &__navigation {
+    float: right;
+    @include mq(md) {
+      display: none;
+    }
+  }
+  &__navItem {
+    box-sizing: border-box;
+    float: left;
+    padding: 0 $space_m;
+    border-left: 1px solid $border-color_default;
+    &:hover {
+      background-color: #dcdcdc;
+    }
+    &:last-child {
+      border-right: 1px solid $border-color_default;
+    }
+  }
+}

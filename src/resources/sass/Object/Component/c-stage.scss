@@ -1,0 +1,38 @@
+.c-stage {
+  box-sizing: border-box;
+  display: block;
+  padding: $space_xs;
+  border-bottom: 1px solid #000;
+  transition: all 300ms ease;
+  &--isActive {
+    background-color: $background-color_stage-hover;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: $background-color_stage-hover;
+    transition: all 300ms ease;
+  }
+  @include mq() {
+    font-size: $font-size_s;
+  }
+  &__title {
+    padding-top: $space_xs;
+    font-size: $font-size_m;
+    word-wrap: break-word;
+  }
+  &__time {
+    float: right;
+    margin-right: $space_m;
+    &--flNone {
+      float: none;
+    }
+  }
+  &__summary {
+    box-sizing: border-box;
+    min-height: 70px;
+    padding: $space_xxs;
+    font-size: $font-size_m;
+    word-wrap: break-word;
+    background-color: $background-color_summary;
+  }
+}

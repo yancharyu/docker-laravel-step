@@ -1,0 +1,18 @@
+.c-avatar {
+  &__pic {
+    width: 6%;
+    max-width: 37px;
+    height: 35px;
+    border-radius: 50%;
+    @include mq(md) {
+      width: 8%;
+    }
+    @include mq() {
+      width: 11%;
+    }
+  }
+  &__username {
+    margin-left: $space_xxs;
+    word-break: break-all;
+  }
+}

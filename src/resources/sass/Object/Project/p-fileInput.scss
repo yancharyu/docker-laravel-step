@@ -1,0 +1,18 @@
+.p-fileInput {
+  width: 50%;
+  margin: $space_m auto 0;
+  &__button {
+    box-sizing: border-box;
+    display: inline-block;
+    width: 100%;
+    padding: $space_xs;
+    font-size: $font-size_m;
+    font-weight: bold;
+    cursor: pointer;
+    background-color: #d3d3d3;
+    border-radius: 8px;
+  }
+  &__input {
+    display: none;
+  }
+}

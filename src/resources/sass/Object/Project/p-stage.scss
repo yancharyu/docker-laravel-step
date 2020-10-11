@@ -1,0 +1,101 @@
+.p-stage {
+  position: relative;
+  overflow: hidden;
+  font-size: $font-size_l;
+  @include mq(md) {
+    font-size: $font-size_m;
+  }
+  &__main {
+    box-sizing: border-box;
+    float: left;
+    width: 68%;
+    padding: $space_m $space_s;
+    overflow: hidden;
+    background-color: $background-color_default;
+    @include mq(md) {
+      float: none;
+      width: 100%;
+      max-width: 560px;
+      margin: 0 auto;
+      margin-bottom: $space_m;
+    }
+  }
+  &__title {
+    margin-bottom: $space_xl;
+    font-size: $font-size_xl;
+    text-align: center;
+    word-wrap: break-word;
+    @include mq(md) {
+      font-size: $font-size_l;
+    }
+  }
+  &__summary {
+    box-sizing: border-box;
+    min-height: 250px;
+    padding: $space_xs;
+    margin-bottom: $space_xl;
+    overflow: scroll;
+    font-size: $font-size_m;
+    word-wrap: break-word;
+    border: 1px solid #000;
+    @include mq() {
+      min-height: 200px;
+    }
+  }
+  &__time {
+    float: left;
+    width: 60%;
+    font-size: $font-size_l;
+    word-wrap: break-word;
+    vertical-align: bottom;
+    @include mq(md) {
+      font-size: $font-size_m;
+    }
+  }
+  &__noAchievement {
+    box-sizing: border-box;
+    height: 400px;
+    padding-top: 170px;
+    font-size: $font-size_l;
+    color: #fff;
+    text-align: center;
+    white-space: pre-wrap;
+    background-color: black;
+    @include mq() {
+      height: 300px;
+      padding-top: 140px;
+      font-size: $font-size_m;
+    }
+  }
+  &__showModalButton {
+    float: right;
+  }
+  &__closeButton {
+    margin-right: $space_s;
+  }
+  &__clearButton {
+    background-color: #ff6347;
+  }
+  &__alClearButton {
+    cursor: default;
+    background-color: #1e90ff;
+  }
+  &__modal {
+    position: absolute;
+    top: 20;
+    left: 20;
+    box-sizing: border-box;
+    width: 40%;
+    min-height: 200px;
+    padding: $space_xl $space_m $space_m;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 10px;
+    @include mq(md) {
+      width: 90%;
+    }
+  }
+  &__input {
+    width: 15%;
+  }
+}

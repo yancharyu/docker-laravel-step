@@ -1,0 +1,46 @@
+.p-withdraw {
+  width: 100%;
+  &__title {
+    margin-bottom: $space_xxl;
+    font-size: $font-size_xl;
+    border-bottom: 1px solid #000;
+  }
+  &__body {
+    margin-bottom: $space_xl;
+    text-align: center;
+  }
+  &__triangle {
+    margin-bottom: $space_l;
+    font-size: $font-size_l;
+    color: $font-color_error;
+  }
+  &__mainText {
+    text-align: center;
+    @include mq() {
+      font-size: $font-size_m;
+    }
+  }
+  &__button {
+    display: block;
+    width: 30%;
+    padding: $space_s $space_m;
+    margin: 0 auto;
+    @include mq() {
+      width: 50%;
+      max-width: 160px;
+    }
+    &--mgBottom {
+      margin-bottom: $space_xl;
+      @include mq() {
+        margin-bottom: $space_l;
+      }
+    }
+    &--danger {
+      background-color: $background-color_danger;
+    }
+    & > a {
+      width: 100%;
+      color: #fff;
+    }
+  }
+}

@@ -1,0 +1,25 @@
+// メディアクエリのブレイクポイント設定
+// マップ型変数を使うと便利
+$breakpoints: (
+  'sm': 'screen and (max-width: 480px)',
+  'md': 'screen and (max-width: 898px)',
+) !default;
+
+// map-get()の第一引数に変数名、第二引数にマップ型のキーを渡すと、マップ型の値が返る
+// #{}は「インターポーレーション」といって、演算できない箇所、変数使えない箇所でも使えるようにするものcalcなどでよく使う
+// 引数$breakpoint: smは引数が渡されたなかったら自動的にsmが適応されるという書き方（デフォルト値のようなもの）
+@mixin mq($breakpoint: sm) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+// 背景画像のretina対応用
+@mixin bg-retina() {
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (-webkit-min-device-pixel-ratio: 2),
+    only screen and (min-resolution: 192dpi),
+    only screen and (min-resolution: 2dppx) {
+    @content;
+  }
+}

@@ -1,0 +1,43 @@
+.p-verifyEmail {
+  width: 80%;
+  margin: $space_3xl auto 0;
+  overflow: scroll;
+  @include mq(md) {
+    width: 100%;
+    max-width: 640px;
+  }
+  &__head {
+    box-sizing: border-box;
+    padding: $space_s $space_m;
+    font-size: $font-size_l;
+    background-color: #dcdcdc;
+  }
+  &__body {
+    box-sizing: border-box;
+    padding: $space_s $space_m;
+    margin-bottom: $space_l;
+    background-color: #fff;
+    &--success {
+      box-sizing: border-box;
+      padding: $space_m;
+      margin-bottom: $space_m;
+      background-color: #add8e6;
+      border-radius: 5px;
+    }
+  }
+  &__link {
+    font-size: $font-size_m;
+    color: $font-color_link;
+    &--logout {
+      font-size: $font-size_l;
+    }
+    &--email {
+      display: block;
+      margin-top: $space_m;
+    }
+    &:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}

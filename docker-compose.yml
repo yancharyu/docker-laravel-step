@@ -1,0 +1,35 @@
+version: "3.8"
+services:
+  app:
+    container_name: php
+    build: ./docker/php
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./src:/work/:delegated
+      - vendor-store:/work/vendor
+
+  nginx:
+    container_name: nginx
+    build: ./docker/nginx
+    ports:
+      - 8080:80
+    volumes:
+      - php-fpm-socket:/var/run/php-fpm
+      - ./src:/work:delegated
+      - node_modules-store:/work/node_modules
+    depends_on:
+      - app
+
+  mysql:
+    container_name: mysql
+    build: ./docker/mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - db-store:/var/lib/mysql:cached
+
+volumes:
+  php-fpm-socket:
+  db-store:
+  vendor-store:
+  node_modules-store:

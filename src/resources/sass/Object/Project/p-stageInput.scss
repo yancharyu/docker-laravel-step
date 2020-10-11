@@ -1,0 +1,32 @@
+.p-stageInput {
+  overflow: hidden;
+  &__container {
+    box-sizing: border-box;
+    padding: $space_s $space_s 0;
+    margin-bottom: $space_m;
+    border: 1px solid $border-color_form;
+  }
+
+  &__button {
+    box-sizing: border-box;
+    padding: $space_xs $space_s;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    border-radius: $border-radius_oval;
+    transition: opacity 0.15s ease-in;
+    &:hover {
+      opacity: 0.8;
+      transition: opacity 0.15s ease-in;
+    }
+    &--primary {
+      background-color: #00bfff;
+    }
+    &--danger {
+      background-color: #dc143c;
+    }
+  }
+  &__errMessage {
+    color: $font-color_error;
+  }
+}

@@ -1,0 +1,39 @@
+.p-categorySearch {
+  display: flex;
+  flex-flow: row wrap;
+  margin: 0 auto;
+  &--hide {
+    height: 65px;
+    overflow: hidden;
+  }
+  &__button {
+    margin-bottom: $space_s;
+    margin-left: $space_s;
+    cursor: pointer;
+    @include mq(md) {
+      margin-bottom: $space_xs;
+      margin-left: $space_xs;
+    }
+    &:hover {
+      color: $font-color_category;
+      border-color: $border-color_category;
+      transition: background-color 0.3s ease;
+    }
+    &--isActive {
+      color: $font-color_category;
+      border-color: $border-color_category;
+    }
+  }
+  &__showHideButton {
+    box-sizing: border-box;
+    float: right;
+    padding: $space_xxs;
+    margin-top: $space_xs;
+    margin-right: $space_s;
+    font-size: $font-size_m;
+    cursor: pointer;
+    &:active {
+      background-color: $background-color_page;
+    }
+  }
+}

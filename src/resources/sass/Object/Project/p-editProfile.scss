@@ -1,0 +1,50 @@
+.p-editProfile {
+  position: relative;
+  box-sizing: border-box;
+  width: 75%;
+  max-width: 560px;
+  padding: 0;
+  margin: 0 auto;
+  background-color: $background-color_default;
+  @include mq(md) {
+    width: 100%;
+    padding: $space_m;
+    padding: 0;
+  }
+  &__picContainer {
+    margin-top: $space_l;
+    margin-bottom: $space_xl;
+    text-align: center;
+  }
+  &__profileImage {
+    width: 58%;
+    max-width: 200px;
+    height: 190px;
+    margin-bottom: $space_s;
+    border: 2px solid rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    @include mq(md) {
+      width: 70%;
+    }
+  }
+  &__fileLabel {
+    position: relative;
+    width: 40%;
+    margin: 0 auto;
+    cursor: pointer;
+    border: 1px solid #000;
+    border-radius: 5px;
+  }
+  &__inputFile {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+    font-size: $font-size_s;
+    cursor: pointer;
+    opacity: 0;
+  }
+}

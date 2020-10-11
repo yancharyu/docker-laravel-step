@@ -1,0 +1,109 @@
+.p-mypageSidebar {
+  box-sizing: border-box;
+  float: left;
+  width: 32%;
+  min-height: 600px;
+  padding: $space_3xl $space_m $space_xxl;
+  overflow: scroll;
+  text-align: center;
+  background-color: $background-color_default;
+  border-radius: 10px;
+  &__title {
+    display: none;
+    width: 78%;
+    margin-bottom: $space_s;
+    text-align: left;
+    @include mq(md) {
+      display: inline-block;
+    }
+  }
+  &__pic {
+    width: 95%;
+    max-width: 150px;
+    height: 150px;
+    margin-bottom: $space_s;
+    border: 2px solid $border-color_pic;
+    border-radius: 50%;
+    @include mq(md) {
+      display: none;
+    }
+  }
+  &__username {
+    margin-bottom: $space_l;
+    font-size: $font-size_xl;
+    word-break: break-all;
+    @include mq(md) {
+      display: none;
+    }
+  }
+  &__contentContainer {
+    text-align: left;
+  }
+  &__listItem {
+    & > a,
+    & > span {
+      display: inline-block;
+      width: 100%;
+      padding: $space_m 0;
+      padding-left: $space_xs;
+      color: $font-color_listItem;
+      border-bottom: 1px dotted $border-color_default;
+      &:hover {
+        cursor: pointer;
+        background-color: $background-color_page;
+      }
+      @include mq(md) {
+        padding: $space_s 0;
+        font-size: $font-size_s;
+      }
+    }
+    &--isActive {
+      background-color: $background-color_page;
+    }
+  }
+  &__relationsContainer {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    margin-bottom: $space_l;
+    @include mq(md) {
+      display: none;
+    }
+  }
+  &__follow,
+  &__follower {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // ============   スマホ用のマイページのデザイン =================
+  @include mq(md) {
+    position: fixed;
+    top: $header-height;
+    left: -100vw;
+    z-index: 2;
+    width: 45%;
+    max-width: 220px;
+    height: 100vh;
+    padding-top: $space_l;
+    padding-left: $space_s;
+    transition: all 0.3s ease-in;
+  }
+  &--isActive {
+    left: 0;
+  }
+  &__closeIcon {
+    box-sizing: border-box;
+    display: none;
+    padding: $space_xxs;
+    font-size: $font-size_l;
+    color: #808080;
+    &:hover {
+      cursor: pointer;
+    }
+    @include mq(md) {
+      display: inline-block;
+    }
+  }
+}

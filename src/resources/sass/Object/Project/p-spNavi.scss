@@ -1,0 +1,10 @@
+.p-spNavi {
+  display: none;
+  @include mq(md) {
+    display: inline-block;
+  }
+
+  float: right;
+  margin-top: $space_xs;
+  margin-right: $space_xs;
+}
