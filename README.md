@@ -8,6 +8,7 @@ STEPとは
 
 # Usage
  
+Clone project from github
 ```
 $ git clone https://github.com/yancharyu/docker-laravel-step.git
 ```
@@ -16,4 +17,22 @@ $ cd docker-laravel-step
 ```
 ```
 $ docker-compose up -d --build
+```
+In app container 
+```
+[app] $ docker-compose exec app bash
+```
+create .env
+```
+[app] $ cp .env.example .env
+```
+```
+[app] $ php artisan key:generate
+```
+```
+[app] $ php artisan migrate
+```
+Exit from app container
+```
+[app] $ exit
 ```
