@@ -1,10 +1,11 @@
 # STEP
 
-STEPとは
+What is STEP??
 
-ユーザーの学習過程、どういった順番で何を学習してきたかを投稿し、それをもとに勉強をできるサービス。
+A service that allows users to post what they have learned in what order and what they have learned, and study based on that.
 
-マイページから学習の進捗状況も確認できるため、勉強しやすい。
+You can check the progress of learning from My Page, so it is easy to study.
+
 
 # Usage
  
