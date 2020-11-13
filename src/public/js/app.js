@@ -25011,7 +25011,7 @@ module.exports = jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.15';
+  var VERSION = '4.17.20';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -28718,8 +28718,21 @@ module.exports = jQuery;
      * @returns {Array} Returns the new sorted array.
      */
     function baseOrderBy(collection, iteratees, orders) {
+      if (iteratees.length) {
+        iteratees = arrayMap(iteratees, function(iteratee) {
+          if (isArray(iteratee)) {
+            return function(value) {
+              return baseGet(value, iteratee.length === 1 ? iteratee[0] : iteratee);
+            }
+          }
+          return iteratee;
+        });
+      } else {
+        iteratees = [identity];
+      }
+
       var index = -1;
-      iteratees = arrayMap(iteratees.length ? iteratees : [identity], baseUnary(getIteratee()));
+      iteratees = arrayMap(iteratees, baseUnary(getIteratee()));
 
       var result = baseMap(collection, function(value, key, collection) {
         var criteria = arrayMap(iteratees, function(iteratee) {
@@ -28976,6 +28989,10 @@ module.exports = jQuery;
         var key = toKey(path[index]),
             newValue = value;
 
+        if (key === '__proto__' || key === 'constructor' || key === 'prototype') {
+          return object;
+        }
+
         if (index != lastIndex) {
           var objValue = nested[key];
           newValue = customizer ? customizer(objValue, key, nested) : undefined;
@@ -29128,11 +29145,14 @@ module.exports = jQuery;
      *  into `array`.
      */
     function baseSortedIndexBy(array, value, iteratee, retHighest) {
-      value = iteratee(value);
-
       var low = 0,
-          high = array == null ? 0 : array.length,
-          valIsNaN = value !== value,
+          high = array == null ? 0 : array.length;
+      if (high === 0) {
+        return 0;
+      }
+
+      value = iteratee(value);
+      var valIsNaN = value !== value,
           valIsNull = value === null,
           valIsSymbol = isSymbol(value),
           valIsUndefined = value === undefined;
@@ -30617,10 +30637,11 @@ module.exports = jQuery;
       if (arrLength != othLength && !(isPartial && othLength > arrLength)) {
         return false;
       }
-      // Assume cyclic values are equal.
-      var stacked = stack.get(array);
-      if (stacked && stack.get(other)) {
-        return stacked == other;
+      // Check that cyclic values are equal.
+      var arrStacked = stack.get(array);
+      var othStacked = stack.get(other);
+      if (arrStacked && othStacked) {
+        return arrStacked == other && othStacked == array;
       }
       var index = -1,
           result = true,
@@ -30782,10 +30803,11 @@ module.exports = jQuery;
           return false;
         }
       }
-      // Assume cyclic values are equal.
-      var stacked = stack.get(object);
-      if (stacked && stack.get(other)) {
-        return stacked == other;
+      // Check that cyclic values are equal.
+      var objStacked = stack.get(object);
+      var othStacked = stack.get(other);
+      if (objStacked && othStacked) {
+        return objStacked == other && othStacked == object;
       }
       var result = true;
       stack.set(object, other);
@@ -34166,6 +34188,10 @@ module.exports = jQuery;
      * // The `_.property` iteratee shorthand.
      * _.filter(users, 'active');
      * // => objects for ['barney']
+     *
+     * // Combining several predicates using `_.overEvery` or `_.overSome`.
+     * _.filter(users, _.overSome([{ 'age': 36 }, ['age', 40]]));
+     * // => objects for ['fred', 'barney']
      */
     function filter(collection, predicate) {
       var func = isArray(collection) ? arrayFilter : baseFilter;
@@ -34915,15 +34941,15 @@ module.exports = jQuery;
      * var users = [
      *   { 'user': 'fred',   'age': 48 },
      *   { 'user': 'barney', 'age': 36 },
-     *   { 'user': 'fred',   'age': 40 },
+     *   { 'user': 'fred',   'age': 30 },
      *   { 'user': 'barney', 'age': 34 }
      * ];
      *
      * _.sortBy(users, [function(o) { return o.user; }]);
-     * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 40]]
+     * // => objects for [['barney', 36], ['barney', 34], ['fred', 48], ['fred', 30]]
      *
      * _.sortBy(users, ['user', 'age']);
-     * // => objects for [['barney', 34], ['barney', 36], ['fred', 40], ['fred', 48]]
+     * // => objects for [['barney', 34], ['barney', 36], ['fred', 30], ['fred', 48]]
      */
     var sortBy = baseRest(function(collection, iteratees) {
       if (collection == null) {
@@ -39798,11 +39824,11 @@ module.exports = jQuery;
 
       // Use a sourceURL for easier debugging.
       // The sourceURL gets injected into the source that's eval-ed, so be careful
-      // with lookup (in case of e.g. prototype pollution), and strip newlines if any.
-      // A newline wouldn't be a valid sourceURL anyway, and it'd enable code injection.
+      // to normalize all kinds of whitespace, so e.g. newlines (and unicode versions of it) can't sneak in
+      // and escape the comment, thus injecting code that gets evaled.
       var sourceURL = '//# sourceURL=' +
         (hasOwnProperty.call(options, 'sourceURL')
-          ? (options.sourceURL + '').replace(/[\r\n]/g, ' ')
+          ? (options.sourceURL + '').replace(/\s/g, ' ')
           : ('lodash.templateSources[' + (++templateCounter) + ']')
         ) + '\n';
 
@@ -39835,8 +39861,6 @@ module.exports = jQuery;
 
       // If `variable` is not specified wrap a with-statement around the generated
       // code to add the data object to the top of the scope chain.
-      // Like with sourceURL, we take care to not check the option's prototype,
-      // as this configuration is a code injection vector.
       var variable = hasOwnProperty.call(options, 'variable') && options.variable;
       if (!variable) {
         source = 'with (obj) {\n' + source + '\n}\n';
@@ -40543,6 +40567,9 @@ module.exports = jQuery;
      * values against any array or object value, respectively. See `_.isEqual`
      * for a list of supported value comparisons.
      *
+     * **Note:** Multiple values can be checked by combining several matchers
+     * using `_.overSome`
+     *
      * @static
      * @memberOf _
      * @since 3.0.0
@@ -40558,6 +40585,10 @@ module.exports = jQuery;
      *
      * _.filter(objects, _.matches({ 'a': 4, 'c': 6 }));
      * // => [{ 'a': 4, 'b': 5, 'c': 6 }]
+     *
+     * // Checking for several possible values
+     * _.filter(objects, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
+     * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matches(source) {
       return baseMatches(baseClone(source, CLONE_DEEP_FLAG));
@@ -40571,6 +40602,9 @@ module.exports = jQuery;
      * **Note:** Partial comparisons will match empty array and empty object
      * `srcValue` values against any array or object value, respectively. See
      * `_.isEqual` for a list of supported value comparisons.
+     *
+     * **Note:** Multiple values can be checked by combining several matchers
+     * using `_.overSome`
      *
      * @static
      * @memberOf _
@@ -40588,6 +40622,10 @@ module.exports = jQuery;
      *
      * _.find(objects, _.matchesProperty('a', 4));
      * // => { 'a': 4, 'b': 5, 'c': 6 }
+     *
+     * // Checking for several possible values
+     * _.filter(objects, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
+     * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matchesProperty(path, srcValue) {
       return baseMatchesProperty(path, baseClone(srcValue, CLONE_DEEP_FLAG));
@@ -40811,6 +40849,10 @@ module.exports = jQuery;
      * Creates a function that checks if **all** of the `predicates` return
      * truthy when invoked with the arguments it receives.
      *
+     * Following shorthands are possible for providing predicates.
+     * Pass an `Object` and it will be used as an parameter for `_.matches` to create the predicate.
+     * Pass an `Array` of parameters for `_.matchesProperty` and the predicate will be created using them.
+     *
      * @static
      * @memberOf _
      * @since 4.0.0
@@ -40837,6 +40879,10 @@ module.exports = jQuery;
      * Creates a function that checks if **any** of the `predicates` return
      * truthy when invoked with the arguments it receives.
      *
+     * Following shorthands are possible for providing predicates.
+     * Pass an `Object` and it will be used as an parameter for `_.matches` to create the predicate.
+     * Pass an `Array` of parameters for `_.matchesProperty` and the predicate will be created using them.
+     *
      * @static
      * @memberOf _
      * @since 4.0.0
@@ -40856,6 +40902,9 @@ module.exports = jQuery;
      *
      * func(NaN);
      * // => false
+     *
+     * var matchesFunc = _.overSome([{ 'a': 1 }, { 'a': 2 }])
+     * var matchesPropertyFunc = _.overSome([['a', 1], ['a', 2]])
      */
     var overSome = createOver(arraySome);
 
@@ -42139,6 +42188,8 @@ var map = {
 	"./bm": "./node_modules/moment/locale/bm.js",
 	"./bm.js": "./node_modules/moment/locale/bm.js",
 	"./bn": "./node_modules/moment/locale/bn.js",
+	"./bn-bd": "./node_modules/moment/locale/bn-bd.js",
+	"./bn-bd.js": "./node_modules/moment/locale/bn-bd.js",
 	"./bn.js": "./node_modules/moment/locale/bn.js",
 	"./bo": "./node_modules/moment/locale/bo.js",
 	"./bo.js": "./node_modules/moment/locale/bo.js",
@@ -42187,6 +42238,8 @@ var map = {
 	"./es": "./node_modules/moment/locale/es.js",
 	"./es-do": "./node_modules/moment/locale/es-do.js",
 	"./es-do.js": "./node_modules/moment/locale/es-do.js",
+	"./es-mx": "./node_modules/moment/locale/es-mx.js",
+	"./es-mx.js": "./node_modules/moment/locale/es-mx.js",
 	"./es-us": "./node_modules/moment/locale/es-us.js",
 	"./es-us.js": "./node_modules/moment/locale/es-us.js",
 	"./es.js": "./node_modules/moment/locale/es.js",
@@ -42764,16 +42817,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '1',
-            '2': '2',
-            '3': '3',
-            '4': '4',
-            '5': '5',
-            '6': '6',
-            '7': '7',
-            '8': '8',
-            '9': '9',
-            '0': '0',
+            1: '1',
+            2: '2',
+            3: '3',
+            4: '4',
+            5: '5',
+            6: '6',
+            7: '7',
+            8: '8',
+            9: '9',
+            0: '0',
         },
         pluralForm = function (n) {
             return n === 0
@@ -42999,8 +43052,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             yy: '%d سنوات',
         },
         week: {
-            dow: 6, // Saturday is the first day of the week.
-            doy: 12, // The week that contains Jan 12th is the first week of the year.
+            dow: 1, // Monday is the first day of the week.
+            doy: 4, // The week that contains Jan 4th is the first week of the year.
         },
     });
 
@@ -43030,16 +43083,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '١',
-            '2': '٢',
-            '3': '٣',
-            '4': '٤',
-            '5': '٥',
-            '6': '٦',
-            '7': '٧',
-            '8': '٨',
-            '9': '٩',
-            '0': '٠',
+            1: '١',
+            2: '٢',
+            3: '٣',
+            4: '٤',
+            5: '٥',
+            6: '٦',
+            7: '٧',
+            8: '٨',
+            9: '٩',
+            0: '٠',
         },
         numberMap = {
             '١': '1',
@@ -43230,16 +43283,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '١',
-            '2': '٢',
-            '3': '٣',
-            '4': '٤',
-            '5': '٥',
-            '6': '٦',
-            '7': '٧',
-            '8': '٨',
-            '9': '٩',
-            '0': '٠',
+            1: '١',
+            2: '٢',
+            3: '٣',
+            4: '٤',
+            5: '٥',
+            6: '٦',
+            7: '٧',
+            8: '٨',
+            9: '٩',
+            0: '٠',
         },
         numberMap = {
             '١': '1',
@@ -43487,7 +43540,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         relativeTime: {
             future: '%s sonra',
             past: '%s əvvəl',
-            s: 'birneçə saniyə',
+            s: 'bir neçə saniyə',
             ss: '%d saniyə',
             m: 'bir dəqiqə',
             mm: '%d dəqiqə',
@@ -43767,6 +43820,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d часа',
             d: 'ден',
             dd: '%d дена',
+            w: 'седмица',
+            ww: '%d седмици',
             M: 'месец',
             MM: '%d месеца',
             y: 'година',
@@ -43876,6 +43931,154 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
 /***/ }),
 
+/***/ "./node_modules/moment/locale/bn-bd.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/bn-bd.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Bengali (Bangladesh) [bn-bd]
+//! author : Asraf Hossain Patoary : https://github.com/ashwoolford
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
+}(this, (function (moment) { 'use strict';
+
+    //! moment.js locale configuration
+
+    var symbolMap = {
+            1: '১',
+            2: '২',
+            3: '৩',
+            4: '৪',
+            5: '৫',
+            6: '৬',
+            7: '৭',
+            8: '৮',
+            9: '৯',
+            0: '০',
+        },
+        numberMap = {
+            '১': '1',
+            '২': '2',
+            '৩': '3',
+            '৪': '4',
+            '৫': '5',
+            '৬': '6',
+            '৭': '7',
+            '৮': '8',
+            '৯': '9',
+            '০': '0',
+        };
+
+    var bnBd = moment.defineLocale('bn-bd', {
+        months: 'জানুয়ারি_ফেব্রুয়ারি_মার্চ_এপ্রিল_মে_জুন_জুলাই_আগস্ট_সেপ্টেম্বর_অক্টোবর_নভেম্বর_ডিসেম্বর'.split(
+            '_'
+        ),
+        monthsShort: 'জানু_ফেব্রু_মার্চ_এপ্রিল_মে_জুন_জুলাই_আগস্ট_সেপ্ট_অক্টো_নভে_ডিসে'.split(
+            '_'
+        ),
+        weekdays: 'রবিবার_সোমবার_মঙ্গলবার_বুধবার_বৃহস্পতিবার_শুক্রবার_শনিবার'.split(
+            '_'
+        ),
+        weekdaysShort: 'রবি_সোম_মঙ্গল_বুধ_বৃহস্পতি_শুক্র_শনি'.split('_'),
+        weekdaysMin: 'রবি_সোম_মঙ্গল_বুধ_বৃহ_শুক্র_শনি'.split('_'),
+        longDateFormat: {
+            LT: 'A h:mm সময়',
+            LTS: 'A h:mm:ss সময়',
+            L: 'DD/MM/YYYY',
+            LL: 'D MMMM YYYY',
+            LLL: 'D MMMM YYYY, A h:mm সময়',
+            LLLL: 'dddd, D MMMM YYYY, A h:mm সময়',
+        },
+        calendar: {
+            sameDay: '[আজ] LT',
+            nextDay: '[আগামীকাল] LT',
+            nextWeek: 'dddd, LT',
+            lastDay: '[গতকাল] LT',
+            lastWeek: '[গত] dddd, LT',
+            sameElse: 'L',
+        },
+        relativeTime: {
+            future: '%s পরে',
+            past: '%s আগে',
+            s: 'কয়েক সেকেন্ড',
+            ss: '%d সেকেন্ড',
+            m: 'এক মিনিট',
+            mm: '%d মিনিট',
+            h: 'এক ঘন্টা',
+            hh: '%d ঘন্টা',
+            d: 'এক দিন',
+            dd: '%d দিন',
+            M: 'এক মাস',
+            MM: '%d মাস',
+            y: 'এক বছর',
+            yy: '%d বছর',
+        },
+        preparse: function (string) {
+            return string.replace(/[১২৩৪৫৬৭৮৯০]/g, function (match) {
+                return numberMap[match];
+            });
+        },
+        postformat: function (string) {
+            return string.replace(/\d/g, function (match) {
+                return symbolMap[match];
+            });
+        },
+
+        meridiemParse: /রাত|ভোর|সকাল|দুপুর|বিকাল|সন্ধ্যা|রাত/,
+        meridiemHour: function (hour, meridiem) {
+            if (hour === 12) {
+                hour = 0;
+            }
+            if (meridiem === 'রাত') {
+                return hour < 4 ? hour : hour + 12;
+            } else if (meridiem === 'ভোর') {
+                return hour;
+            } else if (meridiem === 'সকাল') {
+                return hour;
+            } else if (meridiem === 'দুপুর') {
+                return hour >= 3 ? hour : hour + 12;
+            } else if (meridiem === 'বিকাল') {
+                return hour + 12;
+            } else if (meridiem === 'সন্ধ্যা') {
+                return hour + 12;
+            }
+        },
+
+        meridiem: function (hour, minute, isLower) {
+            if (hour < 4) {
+                return 'রাত';
+            } else if (hour < 6) {
+                return 'ভোর';
+            } else if (hour < 12) {
+                return 'সকাল';
+            } else if (hour < 15) {
+                return 'দুপুর';
+            } else if (hour < 18) {
+                return 'বিকাল';
+            } else if (hour < 20) {
+                return 'সন্ধ্যা';
+            } else {
+                return 'রাত';
+            }
+        },
+        week: {
+            dow: 0, // Sunday is the first day of the week.
+            doy: 6, // The week that contains Jan 6th is the first week of the year.
+        },
+    });
+
+    return bnBd;
+
+})));
+
+
+/***/ }),
+
 /***/ "./node_modules/moment/locale/bn.js":
 /*!******************************************!*\
   !*** ./node_modules/moment/locale/bn.js ***!
@@ -43895,16 +44098,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '১',
-            '2': '২',
-            '3': '৩',
-            '4': '৪',
-            '5': '৫',
-            '6': '৬',
-            '7': '৭',
-            '8': '৮',
-            '9': '৯',
-            '0': '০',
+            1: '১',
+            2: '২',
+            3: '৩',
+            4: '৪',
+            5: '৫',
+            6: '৬',
+            7: '৭',
+            8: '৮',
+            9: '৯',
+            0: '০',
         },
         numberMap = {
             '১': '1',
@@ -44033,16 +44236,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '༡',
-            '2': '༢',
-            '3': '༣',
-            '4': '༤',
-            '5': '༥',
-            '6': '༦',
-            '7': '༧',
-            '8': '༨',
-            '9': '༩',
-            '0': '༠',
+            1: '༡',
+            2: '༢',
+            3: '༣',
+            4: '༤',
+            5: '༥',
+            6: '༦',
+            7: '༧',
+            8: '༨',
+            9: '༩',
+            0: '༠',
         },
         numberMap = {
             '༡': '1',
@@ -46503,6 +46706,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d horas',
             d: 'un día',
             dd: '%d días',
+            w: 'una semana',
+            ww: '%d semanas',
             M: 'un mes',
             MM: '%d meses',
             y: 'un año',
@@ -46517,6 +46722,132 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     });
 
     return esDo;
+
+})));
+
+
+/***/ }),
+
+/***/ "./node_modules/moment/locale/es-mx.js":
+/*!*********************************************!*\
+  !*** ./node_modules/moment/locale/es-mx.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Spanish (Mexico) [es-mx]
+//! author : JC Franco : https://github.com/jcfranco
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
+   undefined
+}(this, (function (moment) { 'use strict';
+
+    //! moment.js locale configuration
+
+    var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split(
+            '_'
+        ),
+        monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_'),
+        monthsParse = [
+            /^ene/i,
+            /^feb/i,
+            /^mar/i,
+            /^abr/i,
+            /^may/i,
+            /^jun/i,
+            /^jul/i,
+            /^ago/i,
+            /^sep/i,
+            /^oct/i,
+            /^nov/i,
+            /^dic/i,
+        ],
+        monthsRegex = /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre|ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i;
+
+    var esMx = moment.defineLocale('es-mx', {
+        months: 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split(
+            '_'
+        ),
+        monthsShort: function (m, format) {
+            if (!m) {
+                return monthsShortDot;
+            } else if (/-MMM-/.test(format)) {
+                return monthsShort[m.month()];
+            } else {
+                return monthsShortDot[m.month()];
+            }
+        },
+        monthsRegex: monthsRegex,
+        monthsShortRegex: monthsRegex,
+        monthsStrictRegex: /^(enero|febrero|marzo|abril|mayo|junio|julio|agosto|septiembre|octubre|noviembre|diciembre)/i,
+        monthsShortStrictRegex: /^(ene\.?|feb\.?|mar\.?|abr\.?|may\.?|jun\.?|jul\.?|ago\.?|sep\.?|oct\.?|nov\.?|dic\.?)/i,
+        monthsParse: monthsParse,
+        longMonthsParse: monthsParse,
+        shortMonthsParse: monthsParse,
+        weekdays: 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
+        weekdaysShort: 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
+        weekdaysMin: 'do_lu_ma_mi_ju_vi_sá'.split('_'),
+        weekdaysParseExact: true,
+        longDateFormat: {
+            LT: 'H:mm',
+            LTS: 'H:mm:ss',
+            L: 'DD/MM/YYYY',
+            LL: 'D [de] MMMM [de] YYYY',
+            LLL: 'D [de] MMMM [de] YYYY H:mm',
+            LLLL: 'dddd, D [de] MMMM [de] YYYY H:mm',
+        },
+        calendar: {
+            sameDay: function () {
+                return '[hoy a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+            },
+            nextDay: function () {
+                return '[mañana a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+            },
+            nextWeek: function () {
+                return 'dddd [a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+            },
+            lastDay: function () {
+                return '[ayer a la' + (this.hours() !== 1 ? 's' : '') + '] LT';
+            },
+            lastWeek: function () {
+                return (
+                    '[el] dddd [pasado a la' +
+                    (this.hours() !== 1 ? 's' : '') +
+                    '] LT'
+                );
+            },
+            sameElse: 'L',
+        },
+        relativeTime: {
+            future: 'en %s',
+            past: 'hace %s',
+            s: 'unos segundos',
+            ss: '%d segundos',
+            m: 'un minuto',
+            mm: '%d minutos',
+            h: 'una hora',
+            hh: '%d horas',
+            d: 'un día',
+            dd: '%d días',
+            w: 'una semana',
+            ww: '%d semanas',
+            M: 'un mes',
+            MM: '%d meses',
+            y: 'un año',
+            yy: '%d años',
+        },
+        dayOfMonthOrdinalParse: /\d{1,2}º/,
+        ordinal: '%dº',
+        week: {
+            dow: 0, // Sunday is the first day of the week.
+            doy: 4, // The week that contains Jan 4th is the first week of the year.
+        },
+        invalidDate: 'Fecha inválida',
+    });
+
+    return esMx;
 
 })));
 
@@ -46627,6 +46958,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d horas',
             d: 'un día',
             dd: '%d días',
+            w: 'una semana',
+            ww: '%d semanas',
             M: 'un mes',
             MM: '%d meses',
             y: 'un año',
@@ -46750,6 +47083,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d horas',
             d: 'un día',
             dd: '%d días',
+            w: 'una semana',
+            ww: '%d semanas',
             M: 'un mes',
             MM: '%d meses',
             y: 'un año',
@@ -46761,7 +47096,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             dow: 1, // Monday is the first day of the week.
             doy: 4, // The week that contains Jan 4th is the first week of the year.
         },
-        invalidDate: 'Fecha invalida',
+        invalidDate: 'Fecha inválida',
     });
 
     return es;
@@ -46971,16 +47306,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '۱',
-            '2': '۲',
-            '3': '۳',
-            '4': '۴',
-            '5': '۵',
-            '6': '۶',
-            '7': '۷',
-            '8': '۸',
-            '9': '۹',
-            '0': '۰',
+            1: '۱',
+            2: '۲',
+            3: '۳',
+            4: '۴',
+            5: '۵',
+            6: '۶',
+            7: '۷',
+            8: '۸',
+            9: '۹',
+            0: '۰',
         },
         numberMap = {
             '۱': '1',
@@ -47640,6 +47975,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d heures',
             d: 'un jour',
             dd: '%d jours',
+            w: 'une semaine',
+            ww: '%d semaines',
             M: 'un mois',
             MM: '%d mois',
             y: 'un an',
@@ -48206,8 +48543,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             }
         },
         week: {
-            dow: 1, // Monday is the first day of the week.
-            doy: 4, // The week that contains Jan 4th is the first week of the year.
+            dow: 0, // Sunday is the first day of the week
+            doy: 3, // The week that contains Jan 4th is the first week of the year (7 + 0 - 4)
         },
         meridiemParse: /राती|सकाळीं|दनपारां|सांजे/,
         meridiemHour: function (hour, meridiem) {
@@ -48350,8 +48687,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             }
         },
         week: {
-            dow: 1, // Monday is the first day of the week.
-            doy: 4, // The week that contains Jan 4th is the first week of the year.
+            dow: 0, // Sunday is the first day of the week
+            doy: 3, // The week that contains Jan 4th is the first week of the year (7 + 0 - 4)
         },
         meridiemParse: /rati|sokallim|donparam|sanje/,
         meridiemHour: function (hour, meridiem) {
@@ -48409,16 +48746,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '૧',
-            '2': '૨',
-            '3': '૩',
-            '4': '૪',
-            '5': '૫',
-            '6': '૬',
-            '7': '૭',
-            '8': '૮',
-            '9': '૯',
-            '0': '૦',
+            1: '૧',
+            2: '૨',
+            3: '૩',
+            4: '૪',
+            5: '૫',
+            6: '૬',
+            7: '૭',
+            8: '૮',
+            9: '૯',
+            0: '૦',
         },
         numberMap = {
             '૧': '1',
@@ -48664,16 +49001,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '१',
-            '2': '२',
-            '3': '३',
-            '4': '४',
-            '5': '५',
-            '6': '६',
-            '7': '७',
-            '8': '८',
-            '9': '९',
-            '0': '०',
+            1: '१',
+            2: '२',
+            3: '३',
+            4: '४',
+            5: '५',
+            6: '६',
+            7: '७',
+            8: '८',
+            9: '९',
+            0: '०',
         },
         numberMap = {
             '१': '1',
@@ -48686,16 +49023,48 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             '८': '8',
             '९': '9',
             '०': '0',
-        };
+        },
+        monthsParse = [
+            /^जन/i,
+            /^फ़र|फर/i,
+            /^मार्च/i,
+            /^अप्रै/i,
+            /^मई/i,
+            /^जून/i,
+            /^जुल/i,
+            /^अग/i,
+            /^सितं|सित/i,
+            /^अक्टू/i,
+            /^नव|नवं/i,
+            /^दिसं|दिस/i,
+        ],
+        shortMonthsParse = [
+            /^जन/i,
+            /^फ़र/i,
+            /^मार्च/i,
+            /^अप्रै/i,
+            /^मई/i,
+            /^जून/i,
+            /^जुल/i,
+            /^अग/i,
+            /^सित/i,
+            /^अक्टू/i,
+            /^नव/i,
+            /^दिस/i,
+        ];
 
     var hi = moment.defineLocale('hi', {
-        months: 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split(
-            '_'
-        ),
+        months: {
+            format: 'जनवरी_फ़रवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितम्बर_अक्टूबर_नवम्बर_दिसम्बर'.split(
+                '_'
+            ),
+            standalone: 'जनवरी_फरवरी_मार्च_अप्रैल_मई_जून_जुलाई_अगस्त_सितंबर_अक्टूबर_नवंबर_दिसंबर'.split(
+                '_'
+            ),
+        },
         monthsShort: 'जन._फ़र._मार्च_अप्रै._मई_जून_जुल._अग._सित._अक्टू._नव._दिस.'.split(
             '_'
         ),
-        monthsParseExact: true,
         weekdays: 'रविवार_सोमवार_मंगलवार_बुधवार_गुरूवार_शुक्रवार_शनिवार'.split('_'),
         weekdaysShort: 'रवि_सोम_मंगल_बुध_गुरू_शुक्र_शनि'.split('_'),
         weekdaysMin: 'र_सो_मं_बु_गु_शु_श'.split('_'),
@@ -48707,6 +49076,19 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             LLL: 'D MMMM YYYY, A h:mm बजे',
             LLLL: 'dddd, D MMMM YYYY, A h:mm बजे',
         },
+
+        monthsParse: monthsParse,
+        longMonthsParse: monthsParse,
+        shortMonthsParse: shortMonthsParse,
+
+        monthsRegex: /^(जनवरी|जन\.?|फ़रवरी|फरवरी|फ़र\.?|मार्च?|अप्रैल|अप्रै\.?|मई?|जून?|जुलाई|जुल\.?|अगस्त|अग\.?|सितम्बर|सितंबर|सित\.?|अक्टूबर|अक्टू\.?|नवम्बर|नवंबर|नव\.?|दिसम्बर|दिसंबर|दिस\.?)/i,
+
+        monthsShortRegex: /^(जनवरी|जन\.?|फ़रवरी|फरवरी|फ़र\.?|मार्च?|अप्रैल|अप्रै\.?|मई?|जून?|जुलाई|जुल\.?|अगस्त|अग\.?|सितम्बर|सितंबर|सित\.?|अक्टूबर|अक्टू\.?|नवम्बर|नवंबर|नव\.?|दिसम्बर|दिसंबर|दिस\.?)/i,
+
+        monthsStrictRegex: /^(जनवरी?|फ़रवरी|फरवरी?|मार्च?|अप्रैल?|मई?|जून?|जुलाई?|अगस्त?|सितम्बर|सितंबर|सित?\.?|अक्टूबर|अक्टू\.?|नवम्बर|नवंबर?|दिसम्बर|दिसंबर?)/i,
+
+        monthsShortStrictRegex: /^(जन\.?|फ़र\.?|मार्च?|अप्रै\.?|मई?|जून?|जुल\.?|अग\.?|सित\.?|अक्टू\.?|नव\.?|दिस\.?)/i,
+
         calendar: {
             sameDay: '[आज] LT',
             nextDay: '[कल] LT',
@@ -48968,6 +49350,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 //! moment.js locale configuration
 //! locale : Hungarian [hu]
 //! author : Adam Brunner : https://github.com/adambrunner
+//! author : Peter Viszt  : https://github.com/passatgt
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
@@ -49026,9 +49409,10 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         months: 'január_február_március_április_május_június_július_augusztus_szeptember_október_november_december'.split(
             '_'
         ),
-        monthsShort: 'jan_feb_márc_ápr_máj_jún_júl_aug_szept_okt_nov_dec'.split(
+        monthsShort: 'jan._feb._márc._ápr._máj._jún._júl._aug._szept._okt._nov._dec.'.split(
             '_'
         ),
+        monthsParseExact: true,
         weekdays: 'vasárnap_hétfő_kedd_szerda_csütörtök_péntek_szombat'.split('_'),
         weekdaysShort: 'vas_hét_kedd_sze_csüt_pén_szo'.split('_'),
         weekdaysMin: 'v_h_k_sze_cs_p_szo'.split('_'),
@@ -49649,6 +50033,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d ore',
             d: 'un giorno',
             dd: '%d giorni',
+            w: 'una settimana',
+            ww: '%d settimane',
             M: 'un mese',
             MM: '%d mesi',
             y: 'un anno',
@@ -50166,16 +50552,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '១',
-            '2': '២',
-            '3': '៣',
-            '4': '៤',
-            '5': '៥',
-            '6': '៦',
-            '7': '៧',
-            '8': '៨',
-            '9': '៩',
-            '0': '០',
+            1: '១',
+            2: '២',
+            3: '៣',
+            4: '៤',
+            5: '៥',
+            6: '៦',
+            7: '៧',
+            8: '៨',
+            9: '៩',
+            0: '០',
         },
         numberMap = {
             '១': '1',
@@ -50288,16 +50674,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '೧',
-            '2': '೨',
-            '3': '೩',
-            '4': '೪',
-            '5': '೫',
-            '6': '೬',
-            '7': '೭',
-            '8': '೮',
-            '9': '೯',
-            '0': '೦',
+            1: '೧',
+            2: '೨',
+            3: '೩',
+            4: '೪',
+            5: '೫',
+            6: '೬',
+            7: '೭',
+            8: '೮',
+            9: '೯',
+            0: '೦',
         },
         numberMap = {
             '೧': '1',
@@ -50526,16 +50912,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '١',
-            '2': '٢',
-            '3': '٣',
-            '4': '٤',
-            '5': '٥',
-            '6': '٦',
-            '7': '٧',
-            '8': '٨',
-            '9': '٩',
-            '0': '٠',
+            1: '١',
+            2: '٢',
+            3: '٣',
+            4: '٤',
+            5: '٥',
+            6: '٦',
+            7: '٧',
+            8: '٨',
+            9: '٩',
+            0: '٠',
         },
         numberMap = {
             '١': '1',
@@ -51807,16 +52193,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '१',
-            '2': '२',
-            '3': '३',
-            '4': '४',
-            '5': '५',
-            '6': '६',
-            '7': '७',
-            '8': '८',
-            '9': '९',
-            '0': '०',
+            1: '१',
+            2: '२',
+            3: '३',
+            4: '४',
+            5: '५',
+            6: '६',
+            7: '७',
+            8: '८',
+            9: '९',
+            0: '०',
         },
         numberMap = {
             '१': '1',
@@ -52296,16 +52682,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '၁',
-            '2': '၂',
-            '3': '၃',
-            '4': '၄',
-            '5': '၅',
-            '6': '၆',
-            '7': '၇',
-            '8': '၈',
-            '9': '၉',
-            '0': '၀',
+            1: '၁',
+            2: '၂',
+            3: '၃',
+            4: '၄',
+            5: '၅',
+            6: '၆',
+            7: '၇',
+            8: '၈',
+            9: '၉',
+            0: '၀',
         },
         numberMap = {
             '၁': '1',
@@ -52445,6 +52831,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d timer',
             d: 'en dag',
             dd: '%d dager',
+            w: 'en uke',
+            ww: '%d uker',
             M: 'en måned',
             MM: '%d måneder',
             y: 'ett år',
@@ -52484,16 +52872,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '१',
-            '2': '२',
-            '3': '३',
-            '4': '४',
-            '5': '५',
-            '6': '६',
-            '7': '७',
-            '8': '८',
-            '9': '९',
-            '0': '०',
+            1: '१',
+            2: '२',
+            3: '३',
+            4: '४',
+            5: '५',
+            6: '६',
+            7: '७',
+            8: '८',
+            9: '९',
+            0: '०',
         },
         numberMap = {
             '१': '1',
@@ -52824,6 +53212,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d uur',
             d: 'één dag',
             dd: '%d dagen',
+            w: 'één week',
+            ww: '%d weken',
             M: 'één maand',
             MM: '%d maanden',
             y: 'één jaar',
@@ -52907,6 +53297,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d timar',
             d: 'ein dag',
             dd: '%d dagar',
+            w: 'ei veke',
+            ww: '%d veker',
             M: 'ein månad',
             MM: '%d månader',
             y: 'eit år',
@@ -53049,16 +53441,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '੧',
-            '2': '੨',
-            '3': '੩',
-            '4': '੪',
-            '5': '੫',
-            '6': '੬',
-            '7': '੭',
-            '8': '੮',
-            '9': '੯',
-            '0': '੦',
+            1: '੧',
+            2: '੨',
+            3: '੩',
+            4: '੪',
+            5: '੫',
+            6: '੬',
+            7: '੭',
+            8: '੮',
+            9: '੯',
+            0: '੦',
         },
         numberMap = {
             '੧': '1',
@@ -53194,7 +53586,21 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         ),
         monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split(
             '_'
-        );
+        ),
+        monthsParse = [
+            /^sty/i,
+            /^lut/i,
+            /^mar/i,
+            /^kwi/i,
+            /^maj/i,
+            /^cze/i,
+            /^lip/i,
+            /^sie/i,
+            /^wrz/i,
+            /^paź/i,
+            /^lis/i,
+            /^gru/i,
+        ];
     function plural(n) {
         return n % 10 < 5 && n % 10 > 1 && ~~(n / 10) % 10 !== 1;
     }
@@ -53211,6 +53617,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
                 return withoutSuffix ? 'godzina' : 'godzinę';
             case 'hh':
                 return result + (plural(number) ? 'godziny' : 'godzin');
+            case 'ww':
+                return result + (plural(number) ? 'tygodnie' : 'tygodni');
             case 'MM':
                 return result + (plural(number) ? 'miesiące' : 'miesięcy');
             case 'yy':
@@ -53222,17 +53630,6 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         months: function (momentToFormat, format) {
             if (!momentToFormat) {
                 return monthsNominative;
-            } else if (format === '') {
-                // Hack: if format empty we know this is used to generate
-                // RegExp by moment. Give then back both valid forms of months
-                // in RegExp ready format.
-                return (
-                    '(' +
-                    monthsSubjective[momentToFormat.month()] +
-                    '|' +
-                    monthsNominative[momentToFormat.month()] +
-                    ')'
-                );
             } else if (/D MMMM/.test(format)) {
                 return monthsSubjective[momentToFormat.month()];
             } else {
@@ -53240,6 +53637,9 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             }
         },
         monthsShort: 'sty_lut_mar_kwi_maj_cze_lip_sie_wrz_paź_lis_gru'.split('_'),
+        monthsParse: monthsParse,
+        longMonthsParse: monthsParse,
+        shortMonthsParse: monthsParse,
         weekdays: 'niedziela_poniedziałek_wtorek_środa_czwartek_piątek_sobota'.split(
             '_'
         ),
@@ -53300,6 +53700,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: translate,
             d: '1 dzień',
             dd: '%d dni',
+            w: 'tydzień',
+            ww: translate,
             M: 'miesiąc',
             MM: translate,
             y: 'rok',
@@ -53387,6 +53789,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         },
         dayOfMonthOrdinalParse: /\d{1,2}º/,
         ordinal: '%dº',
+        invalidDate: 'Data inválida',
     });
 
     return ptBr;
@@ -53456,6 +53859,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d horas',
             d: 'um dia',
             dd: '%d dias',
+            w: 'uma semana',
+            ww: '%d semanas',
             M: 'um mês',
             MM: '%d meses',
             y: 'um ano',
@@ -53502,6 +53907,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
                 mm: 'minute',
                 hh: 'ore',
                 dd: 'zile',
+                ww: 'săptămâni',
                 MM: 'luni',
                 yy: 'ani',
             },
@@ -53550,6 +53956,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: relativeTimeWithPlural,
             d: 'o zi',
             dd: relativeTimeWithPlural,
+            w: 'o săptămână',
+            ww: relativeTimeWithPlural,
             M: 'o lună',
             MM: relativeTimeWithPlural,
             y: 'un an',
@@ -53602,6 +54010,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             mm: withoutSuffix ? 'минута_минуты_минут' : 'минуту_минуты_минут',
             hh: 'час_часа_часов',
             dd: 'день_дня_дней',
+            ww: 'неделя_недели_недель',
             MM: 'месяц_месяца_месяцев',
             yy: 'год_года_лет',
         };
@@ -53742,6 +54151,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: relativeTimeWithPlural,
             d: 'день',
             dd: relativeTimeWithPlural,
+            w: 'неделя',
+            ww: relativeTimeWithPlural,
             M: 'месяц',
             MM: relativeTimeWithPlural,
             y: 'год',
@@ -54506,6 +54917,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 //! moment.js locale configuration
 //! locale : Serbian Cyrillic [sr-cyrl]
 //! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
+//! author : Stefan Crnjaković <stefan@hotmail.rs> : https://github.com/crnjakovic
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
@@ -54562,10 +54974,10 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         longDateFormat: {
             LT: 'H:mm',
             LTS: 'H:mm:ss',
-            L: 'DD.MM.YYYY',
-            LL: 'D. MMMM YYYY',
-            LLL: 'D. MMMM YYYY H:mm',
-            LLLL: 'dddd, D. MMMM YYYY H:mm',
+            L: 'D. M. YYYY.',
+            LL: 'D. MMMM YYYY.',
+            LLL: 'D. MMMM YYYY. H:mm',
+            LLLL: 'dddd, D. MMMM YYYY. H:mm',
         },
         calendar: {
             sameDay: '[данас у] LT',
@@ -54620,7 +55032,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         ordinal: '%d.',
         week: {
             dow: 1, // Monday is the first day of the week.
-            doy: 7, // The week that contains Jan 7th is the first week of the year.
+            doy: 7, // The week that contains Jan 1st is the first week of the year.
         },
     });
 
@@ -54641,6 +55053,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 //! moment.js locale configuration
 //! locale : Serbian [sr]
 //! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
+//! author : Stefan Crnjaković <stefan@hotmail.rs> : https://github.com/crnjakovic
 
 ;(function (global, factory) {
     true ? factory(__webpack_require__(/*! ../moment */ "./node_modules/moment/moment.js")) :
@@ -54699,10 +55112,10 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         longDateFormat: {
             LT: 'H:mm',
             LTS: 'H:mm:ss',
-            L: 'DD.MM.YYYY',
-            LL: 'D. MMMM YYYY',
-            LLL: 'D. MMMM YYYY H:mm',
-            LLLL: 'dddd, D. MMMM YYYY H:mm',
+            L: 'D. M. YYYY.',
+            LL: 'D. MMMM YYYY.',
+            LLL: 'D. MMMM YYYY. H:mm',
+            LLLL: 'dddd, D. MMMM YYYY. H:mm',
         },
         calendar: {
             sameDay: '[danas u] LT',
@@ -55052,16 +55465,16 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     //! moment.js locale configuration
 
     var symbolMap = {
-            '1': '௧',
-            '2': '௨',
-            '3': '௩',
-            '4': '௪',
-            '5': '௫',
-            '6': '௬',
-            '7': '௭',
-            '8': '௮',
-            '9': '௯',
-            '0': '௦',
+            1: '௧',
+            2: '௨',
+            3: '௩',
+            4: '௪',
+            5: '௫',
+            6: '௬',
+            7: '௭',
+            8: '௮',
+            9: '௯',
+            0: '௦',
         },
         numberMap = {
             '௧': '1',
@@ -55420,9 +55833,14 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     };
 
     var tg = moment.defineLocale('tg', {
-        months: 'январ_феврал_март_апрел_май_июн_июл_август_сентябр_октябр_ноябр_декабр'.split(
-            '_'
-        ),
+        months: {
+            format: 'январи_феврали_марти_апрели_майи_июни_июли_августи_сентябри_октябри_ноябри_декабри'.split(
+                '_'
+            ),
+            standalone: 'январ_феврал_март_апрел_май_июн_июл_август_сентябр_октябр_ноябр_декабр'.split(
+                '_'
+            ),
+        },
         monthsShort: 'янв_фев_мар_апр_май_июн_июл_авг_сен_окт_ноя_дек'.split('_'),
         weekdays: 'якшанбе_душанбе_сешанбе_чоршанбе_панҷшанбе_ҷумъа_шанбе'.split(
             '_'
@@ -55432,14 +55850,14 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
         longDateFormat: {
             LT: 'HH:mm',
             LTS: 'HH:mm:ss',
-            L: 'DD/MM/YYYY',
+            L: 'DD.MM.YYYY',
             LL: 'D MMMM YYYY',
             LLL: 'D MMMM YYYY HH:mm',
             LLLL: 'dddd, D MMMM YYYY HH:mm',
         },
         calendar: {
             sameDay: '[Имрӯз соати] LT',
-            nextDay: '[Пагоҳ соати] LT',
+            nextDay: '[Фардо соати] LT',
             lastDay: '[Дирӯз соати] LT',
             nextWeek: 'dddd[и] [ҳафтаи оянда соати] LT',
             lastWeek: 'dddd[и] [ҳафтаи гузашта соати] LT',
@@ -55575,6 +55993,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d ชั่วโมง',
             d: '1 วัน',
             dd: '%d วัน',
+            w: '1 สัปดาห์',
+            ww: '%d สัปดาห์',
             M: '1 เดือน',
             MM: '%d เดือน',
             y: '1 ปี',
@@ -55597,7 +56017,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
-//! locale : Turkmen [trk]
+//! locale : Turkmen [tk]
 //! author : Atamyrat Abdyrahmanov : https://github.com/atamyratabdy
 
 ;(function (global, factory) {
@@ -56010,6 +56430,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d saat',
             d: 'bir gün',
             dd: '%d gün',
+            w: 'bir hafta',
+            ww: '%d hafta',
             M: 'bir ay',
             MM: '%d ay',
             y: 'bir yıl',
@@ -56308,7 +56730,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-//! moment.js language configuration
+//! moment.js locale configuration
 //! locale : Uyghur (China) [ug-cn]
 //! author: boyaq : https://github.com/boyaq
 
@@ -56317,7 +56739,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
    undefined
 }(this, (function (moment) { 'use strict';
 
-    //! moment.js language configuration
+    //! moment.js locale configuration
 
     var ugCn = moment.defineLocale('ug-cn', {
         months: 'يانۋار_فېۋرال_مارت_ئاپرېل_ماي_ئىيۇن_ئىيۇل_ئاۋغۇست_سېنتەبىر_ئۆكتەبىر_نويابىر_دېكابىر'.split(
@@ -56935,6 +57357,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d giờ',
             d: 'một ngày',
             dd: '%d ngày',
+            w: 'một tuần',
+            ww: '%d tuần',
             M: 'một tháng',
             MM: '%d tháng',
             y: 'một năm',
@@ -57240,6 +57664,8 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             hh: '%d 小时',
             d: '1 天',
             dd: '%d 天',
+            w: '1 周',
+            ww: '%d 周',
             M: '1 个月',
             MM: '%d 个月',
             y: '1 年',
@@ -57627,7 +58053,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(module) {var require;//! moment.js
-//! version : 2.27.0
+//! version : 2.29.1
 //! authors : Tim Wood, Iskren Chernev, Moment.js contributors
 //! license : MIT
 //! momentjs.com
@@ -60167,8 +60593,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     hooks.createFromInputFallback = deprecate(
         'value provided is not in a recognized RFC2822 or ISO format. moment construction falls back to js Date(), ' +
             'which is not reliable across all browsers and versions. Non RFC2822/ISO date formats are ' +
-            'discouraged and will be removed in an upcoming major release. Please refer to ' +
-            'http://momentjs.com/guides/#/warnings/js-date/ for more info.',
+            'discouraged. Please refer to http://momentjs.com/guides/#/warnings/js-date/ for more info.',
         function (config) {
             config._d = new Date(config._i + (config._useUTC ? ' UTC' : ''));
         }
@@ -61353,7 +61778,10 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
     function calendar$1(time, formats) {
         // Support for single parameter, formats only overload to the calendar function
         if (arguments.length === 1) {
-            if (isMomentInput(arguments[0])) {
+            if (!arguments[0]) {
+                time = undefined;
+                formats = undefined;
+            } else if (isMomentInput(arguments[0])) {
                 time = arguments[0];
                 formats = undefined;
             } else if (isCalendarSpec(arguments[0])) {
@@ -62031,7 +62459,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             eras = this.localeData().eras();
         for (i = 0, l = eras.length; i < l; ++i) {
             // truncate time
-            val = this.startOf('day').valueOf();
+            val = this.clone().startOf('day').valueOf();
 
             if (eras[i].since <= val && val <= eras[i].until) {
                 return eras[i].name;
@@ -62051,7 +62479,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             eras = this.localeData().eras();
         for (i = 0, l = eras.length; i < l; ++i) {
             // truncate time
-            val = this.startOf('day').valueOf();
+            val = this.clone().startOf('day').valueOf();
 
             if (eras[i].since <= val && val <= eras[i].until) {
                 return eras[i].narrow;
@@ -62071,7 +62499,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             eras = this.localeData().eras();
         for (i = 0, l = eras.length; i < l; ++i) {
             // truncate time
-            val = this.startOf('day').valueOf();
+            val = this.clone().startOf('day').valueOf();
 
             if (eras[i].since <= val && val <= eras[i].until) {
                 return eras[i].abbr;
@@ -62094,7 +62522,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
             dir = eras[i].since <= eras[i].until ? +1 : -1;
 
             // truncate time
-            val = this.startOf('day').valueOf();
+            val = this.clone().startOf('day').valueOf();
 
             if (
                 (eras[i].since <= val && val <= eras[i].until) ||
@@ -63245,7 +63673,7 @@ webpackContext.id = "./node_modules/moment/locale sync recursive ^\\.\\/.*$";
 
     //! moment.js
 
-    hooks.version = '2.27.0';
+    hooks.version = '2.29.1';
 
     setHookCallback(createLocal);
 
@@ -63518,6 +63946,24 @@ var runtime = (function (exports) {
   var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
   var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
 
+  function define(obj, key, value) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+    return obj[key];
+  }
+  try {
+    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+    define({}, "");
+  } catch (err) {
+    define = function(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+
   function wrap(innerFn, outerFn, self, tryLocsList) {
     // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
     var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
@@ -63588,16 +64034,19 @@ var runtime = (function (exports) {
     Generator.prototype = Object.create(IteratorPrototype);
   GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
   GeneratorFunctionPrototype.constructor = GeneratorFunction;
-  GeneratorFunctionPrototype[toStringTagSymbol] =
-    GeneratorFunction.displayName = "GeneratorFunction";
+  GeneratorFunction.displayName = define(
+    GeneratorFunctionPrototype,
+    toStringTagSymbol,
+    "GeneratorFunction"
+  );
 
   // Helper for defining the .next, .throw, and .return methods of the
   // Iterator interface in terms of a single ._invoke method.
   function defineIteratorMethods(prototype) {
     ["next", "throw", "return"].forEach(function(method) {
-      prototype[method] = function(arg) {
+      define(prototype, method, function(arg) {
         return this._invoke(method, arg);
-      };
+      });
     });
   }
 
@@ -63616,9 +64065,7 @@ var runtime = (function (exports) {
       Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
     } else {
       genFun.__proto__ = GeneratorFunctionPrototype;
-      if (!(toStringTagSymbol in genFun)) {
-        genFun[toStringTagSymbol] = "GeneratorFunction";
-      }
+      define(genFun, toStringTagSymbol, "GeneratorFunction");
     }
     genFun.prototype = Object.create(Gp);
     return genFun;
@@ -63888,7 +64335,7 @@ var runtime = (function (exports) {
   // unified ._invoke helper method.
   defineIteratorMethods(Gp);
 
-  Gp[toStringTagSymbol] = "Generator";
+  define(Gp, toStringTagSymbol, "Generator");
 
   // A Generator should always return itself as the iterator object when the
   // @@iterator function is called on it. Some browsers' implementations of the
@@ -64516,7 +64963,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
- * vue-i18n v8.18.2 
+ * vue-i18n v8.22.1 
  * (c) 2020 kazuya kawaguchi
  * Released under the MIT License.
  */
@@ -64589,6 +65036,10 @@ function isNull (val) {
   return val === null || val === undefined
 }
 
+function isFunction (val) {
+  return typeof val === 'function'
+}
+
 function parseArgs () {
   var args = [], len = arguments.length;
   while ( len-- ) args[ len ] = arguments[ len ];
@@ -64596,7 +65047,7 @@ function parseArgs () {
   var locale = null;
   var params = null;
   if (args.length === 1) {
-    if (isObject(args[0]) || Array.isArray(args[0])) {
+    if (isObject(args[0]) || isArray(args[0])) {
       params = args[0];
     } else if (typeof args[0] === 'string') {
       locale = args[0];
@@ -64606,7 +65057,7 @@ function parseArgs () {
       locale = args[0];
     }
     /* istanbul ignore if */
-    if (isObject(args[1]) || Array.isArray(args[1])) {
+    if (isObject(args[1]) || isArray(args[1])) {
       params = args[1];
     }
   }
@@ -64664,8 +65115,8 @@ function looseEqual (a, b) {
   var isObjectB = isObject(b);
   if (isObjectA && isObjectB) {
     try {
-      var isArrayA = Array.isArray(a);
-      var isArrayB = Array.isArray(b);
+      var isArrayA = isArray(a);
+      var isArrayB = isArray(b);
       if (isArrayA && isArrayB) {
         return a.length === b.length && a.every(function (e, i) {
           return looseEqual(e, b[i])
@@ -64689,6 +65140,38 @@ function looseEqual (a, b) {
   } else {
     return false
   }
+}
+
+/**
+ * Sanitizes html special characters from input strings. For mitigating risk of XSS attacks.
+ * @param rawText The raw input from the user that should be escaped.
+ */
+function escapeHtml(rawText) {
+  return rawText
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+/**
+ * Escapes html tags and special symbols from all provided params which were returned from parseArgs().params.
+ * This method performs an in-place operation on the params object.
+ *
+ * @param {any} params Parameters as provided from `parseArgs().params`.
+ *                     May be either an array of strings or a string->any map.
+ *
+ * @returns The manipulated `params` object.
+ */
+function escapeParams(params) {
+  if(params != null) {
+    Object.keys(params).forEach(function (key) {
+      if(typeof(params[key]) == 'string') {
+        params[key] = escapeHtml(params[key]);
+      }
+    });
+  }
+  return params
 }
 
 /*  */
@@ -64751,7 +65234,7 @@ var mixin = {
         // init locale messages via custom blocks
         if (options.__i18n) {
           try {
-            var localeMessages = {};
+            var localeMessages = options.i18n && options.i18n.messages ? options.i18n.messages : {};
             options.__i18n.forEach(function (resource) {
               localeMessages = merge(localeMessages, JSON.parse(resource));
             });
@@ -64785,7 +65268,7 @@ var mixin = {
         // init locale messages via custom blocks
         if (options.__i18n) {
           try {
-            var localeMessages$1 = {};
+            var localeMessages$1 = options.i18n && options.i18n.messages ? options.i18n.messages : {};
             options.__i18n.forEach(function (resource) {
               localeMessages$1 = merge(localeMessages$1, JSON.parse(resource));
             });
@@ -64884,7 +65367,7 @@ var interpolationComponent = {
   functional: true,
   props: {
     tag: {
-      type: [String, Boolean],
+      type: [String, Boolean, Object],
       default: 'span'
     },
     path: {
@@ -64991,7 +65474,7 @@ var numberComponent = {
   functional: true,
   props: {
     tag: {
-      type: [String, Boolean],
+      type: [String, Boolean, Object],
       default: 'span'
     },
     value: {
@@ -65680,6 +66163,7 @@ var VueI18n = function VueI18n (options) {
   this.pluralizationRules = options.pluralizationRules || {};
   this._warnHtmlInMessage = options.warnHtmlInMessage || 'off';
   this._postTranslation = options.postTranslation || null;
+  this._escapeParameterHtml = options.escapeParameterHtml || false;
 
   /**
    * @param choice {number} a choice index given by the input to $tc: `$tc('path.to.rule', choiceIndex)`
@@ -65760,7 +66244,7 @@ VueI18n.prototype._checkLocaleMessage = function _checkLocaleMessage (locale, le
           paths.pop();
         }
       });
-    } else if (Array.isArray(message)) {
+    } else if (isArray(message)) {
       message.forEach(function (item, index) {
         if (isPlainObject(item)) {
           paths.push(("[" + index + "]"));
@@ -65950,16 +66434,16 @@ VueI18n.prototype._interpolate = function _interpolate (
   if (!message) { return null }
 
   var pathRet = this._path.getPathValue(message, key);
-  if (Array.isArray(pathRet) || isPlainObject(pathRet)) { return pathRet }
+  if (isArray(pathRet) || isPlainObject(pathRet)) { return pathRet }
 
   var ret;
   if (isNull(pathRet)) {
     /* istanbul ignore else */
     if (isPlainObject(message)) {
       ret = message[key];
-      if (!isString(ret)) {
+      if (!(isString(ret) || isFunction(ret))) {
         if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallback(locale, key)) {
-          warn(("Value of key '" + key + "' is not a string!"));
+          warn(("Value of key '" + key + "' is not a string or function !"));
         }
         return null
       }
@@ -65968,18 +66452,18 @@ VueI18n.prototype._interpolate = function _interpolate (
     }
   } else {
     /* istanbul ignore else */
-    if (isString(pathRet)) {
+    if (isString(pathRet) || isFunction(pathRet)) {
       ret = pathRet;
     } else {
       if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallback(locale, key)) {
-        warn(("Value of key '" + key + "' is not a string!"));
+        warn(("Value of key '" + key + "' is not a string or function!"));
       }
       return null
     }
   }
 
   // Check for the existence of links within the translated string
-  if (ret.indexOf('@:') >= 0 || ret.indexOf('@.') >= 0) {
+  if (isString(ret) && (ret.indexOf('@:') >= 0 || ret.indexOf('@.') >= 0)) {
     ret = this._link(locale, message, ret, host, 'raw', values, visitedLinkStack);
   }
 
@@ -66045,7 +66529,7 @@ VueI18n.prototype._link = function _link (
     }
     translated = this._warnDefault(
       locale, linkPlaceholder, translated, host,
-      Array.isArray(values) ? values : [values],
+      isArray(values) ? values : [values],
       interpolateMode
     );
 
@@ -66064,7 +66548,22 @@ VueI18n.prototype._link = function _link (
   return ret
 };
 
+VueI18n.prototype._createMessageContext = function _createMessageContext (values) {
+  var _list = isArray(values) ? values : [];
+  var _named = isObject(values) ? values : {};
+  var list = function (index) { return _list[index]; };
+  var named = function (key) { return _named[key]; };
+  return {
+    list: list,
+    named: named
+  }
+};
+
 VueI18n.prototype._render = function _render (message, interpolateMode, values, path) {
+  if (isFunction(message)) {
+    return message(this._createMessageContext(values))
+  }
+
   var ret = this._formatter.interpolate(message, values, path);
 
   // If the custom formatter refuses to work - apply the default one
@@ -66207,6 +66706,10 @@ VueI18n.prototype._t = function _t (key, _locale, messages, host) {
   if (!key) { return '' }
 
   var parsedArgs = parseArgs.apply(void 0, values);
+  if(this._escapeParameterHtml) {
+    parsedArgs.params = escapeParams(parsedArgs.params);
+  }
+
   var locale = parsedArgs.locale || _locale;
 
   var ret = this._translate(
@@ -66287,7 +66790,7 @@ VueI18n.prototype._tc = function _tc (
 
 VueI18n.prototype.fetchChoice = function fetchChoice (message, choice) {
   /* istanbul ignore if */
-  if (!message && !isString(message)) { return null }
+  if (!message || !isString(message)) { return null }
   var choices = message.split('|');
 
   choice = this.getChoiceIndex(choice, choices.length);
@@ -66642,7 +67145,7 @@ Object.defineProperty(VueI18n, 'availabilities', {
 });
 
 VueI18n.install = install;
-VueI18n.version = '8.18.2';
+VueI18n.version = '8.22.1';
 
 /* harmony default export */ __webpack_exports__["default"] = (VueI18n);
 
@@ -66826,11 +67329,7 @@ var render = function() {
           _c(
             "div",
             { staticClass: "c-confirm__confirm" },
-            [
-              _vm._t("confirm", [
-                _vm._v("\n          本当に〜しますか？\n        ")
-              ])
-            ],
+            [_vm._t("confirm", [_vm._v(" 本当に〜しますか？ ")])],
             2
           ),
           _vm._v(" "),
@@ -68818,7 +69317,7 @@ function normalizeComponent (
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /*!
-  * vue-router v3.4.3
+  * vue-router v3.4.9
   * (c) 2020 Evan You
   * @license MIT
   */
@@ -68843,158 +69342,6 @@ function extend (a, b) {
   return a
 }
 
-var View = {
-  name: 'RouterView',
-  functional: true,
-  props: {
-    name: {
-      type: String,
-      default: 'default'
-    }
-  },
-  render: function render (_, ref) {
-    var props = ref.props;
-    var children = ref.children;
-    var parent = ref.parent;
-    var data = ref.data;
-
-    // used by devtools to display a router-view badge
-    data.routerView = true;
-
-    // directly use parent context's createElement() function
-    // so that components rendered by router-view can resolve named slots
-    var h = parent.$createElement;
-    var name = props.name;
-    var route = parent.$route;
-    var cache = parent._routerViewCache || (parent._routerViewCache = {});
-
-    // determine current view depth, also check to see if the tree
-    // has been toggled inactive but kept-alive.
-    var depth = 0;
-    var inactive = false;
-    while (parent && parent._routerRoot !== parent) {
-      var vnodeData = parent.$vnode ? parent.$vnode.data : {};
-      if (vnodeData.routerView) {
-        depth++;
-      }
-      if (vnodeData.keepAlive && parent._directInactive && parent._inactive) {
-        inactive = true;
-      }
-      parent = parent.$parent;
-    }
-    data.routerViewDepth = depth;
-
-    // render previous view if the tree is inactive and kept-alive
-    if (inactive) {
-      var cachedData = cache[name];
-      var cachedComponent = cachedData && cachedData.component;
-      if (cachedComponent) {
-        // #2301
-        // pass props
-        if (cachedData.configProps) {
-          fillPropsinData(cachedComponent, data, cachedData.route, cachedData.configProps);
-        }
-        return h(cachedComponent, data, children)
-      } else {
-        // render previous empty view
-        return h()
-      }
-    }
-
-    var matched = route.matched[depth];
-    var component = matched && matched.components[name];
-
-    // render empty node if no matched route or no config component
-    if (!matched || !component) {
-      cache[name] = null;
-      return h()
-    }
-
-    // cache component
-    cache[name] = { component: component };
-
-    // attach instance registration hook
-    // this will be called in the instance's injected lifecycle hooks
-    data.registerRouteInstance = function (vm, val) {
-      // val could be undefined for unregistration
-      var current = matched.instances[name];
-      if (
-        (val && current !== vm) ||
-        (!val && current === vm)
-      ) {
-        matched.instances[name] = val;
-      }
-    }
-
-    // also register instance in prepatch hook
-    // in case the same component instance is reused across different routes
-    ;(data.hook || (data.hook = {})).prepatch = function (_, vnode) {
-      matched.instances[name] = vnode.componentInstance;
-    };
-
-    // register instance in init hook
-    // in case kept-alive component be actived when routes changed
-    data.hook.init = function (vnode) {
-      if (vnode.data.keepAlive &&
-        vnode.componentInstance &&
-        vnode.componentInstance !== matched.instances[name]
-      ) {
-        matched.instances[name] = vnode.componentInstance;
-      }
-    };
-
-    var configProps = matched.props && matched.props[name];
-    // save route and configProps in cache
-    if (configProps) {
-      extend(cache[name], {
-        route: route,
-        configProps: configProps
-      });
-      fillPropsinData(component, data, route, configProps);
-    }
-
-    return h(component, data, children)
-  }
-};
-
-function fillPropsinData (component, data, route, configProps) {
-  // resolve props
-  var propsToPass = data.props = resolveProps(route, configProps);
-  if (propsToPass) {
-    // clone to prevent mutation
-    propsToPass = data.props = extend({}, propsToPass);
-    // pass non-declared props as attrs
-    var attrs = data.attrs = data.attrs || {};
-    for (var key in propsToPass) {
-      if (!component.props || !(key in component.props)) {
-        attrs[key] = propsToPass[key];
-        delete propsToPass[key];
-      }
-    }
-  }
-}
-
-function resolveProps (route, config) {
-  switch (typeof config) {
-    case 'undefined':
-      return
-    case 'object':
-      return config
-    case 'function':
-      return config(route)
-    case 'boolean':
-      return config ? route.params : undefined
-    default:
-      if (true) {
-        warn(
-          false,
-          "props in \"" + (route.path) + "\" is a " + (typeof config) + ", " +
-          "expecting an object, function or boolean."
-        );
-      }
-  }
-}
-
 /*  */
 
 var encodeReserveRE = /[!'()*]/g;
@@ -69008,7 +69355,16 @@ var encode = function (str) { return encodeURIComponent(str)
     .replace(encodeReserveRE, encodeReserveReplacer)
     .replace(commaRE, ','); };
 
-var decode = decodeURIComponent;
+function decode (str) {
+  try {
+    return decodeURIComponent(str)
+  } catch (err) {
+    if (true) {
+      warn(false, ("Error decoding \"" + str + "\". Leaving it intact."));
+    }
+  }
+  return str
+}
 
 function resolveQuery (
   query,
@@ -69201,13 +69557,15 @@ function isObjectEqual (a, b) {
 
   // handle null value #1566
   if (!a || !b) { return a === b }
-  var aKeys = Object.keys(a);
-  var bKeys = Object.keys(b);
+  var aKeys = Object.keys(a).sort();
+  var bKeys = Object.keys(b).sort();
   if (aKeys.length !== bKeys.length) {
     return false
   }
-  return aKeys.every(function (key) {
+  return aKeys.every(function (key, i) {
     var aVal = a[key];
+    var bKey = bKeys[i];
+    if (bKey !== key) { return false }
     var bVal = b[key];
     // query values can be null and undefined
     if (aVal == null || bVal == null) { return aVal === bVal }
@@ -69236,6 +69594,178 @@ function queryIncludes (current, target) {
     }
   }
   return true
+}
+
+function handleRouteEntered (route) {
+  for (var i = 0; i < route.matched.length; i++) {
+    var record = route.matched[i];
+    for (var name in record.instances) {
+      var instance = record.instances[name];
+      var cbs = record.enteredCbs[name];
+      if (!instance || !cbs) { continue }
+      delete record.enteredCbs[name];
+      for (var i$1 = 0; i$1 < cbs.length; i$1++) {
+        if (!instance._isBeingDestroyed) { cbs[i$1](instance); }
+      }
+    }
+  }
+}
+
+var View = {
+  name: 'RouterView',
+  functional: true,
+  props: {
+    name: {
+      type: String,
+      default: 'default'
+    }
+  },
+  render: function render (_, ref) {
+    var props = ref.props;
+    var children = ref.children;
+    var parent = ref.parent;
+    var data = ref.data;
+
+    // used by devtools to display a router-view badge
+    data.routerView = true;
+
+    // directly use parent context's createElement() function
+    // so that components rendered by router-view can resolve named slots
+    var h = parent.$createElement;
+    var name = props.name;
+    var route = parent.$route;
+    var cache = parent._routerViewCache || (parent._routerViewCache = {});
+
+    // determine current view depth, also check to see if the tree
+    // has been toggled inactive but kept-alive.
+    var depth = 0;
+    var inactive = false;
+    while (parent && parent._routerRoot !== parent) {
+      var vnodeData = parent.$vnode ? parent.$vnode.data : {};
+      if (vnodeData.routerView) {
+        depth++;
+      }
+      if (vnodeData.keepAlive && parent._directInactive && parent._inactive) {
+        inactive = true;
+      }
+      parent = parent.$parent;
+    }
+    data.routerViewDepth = depth;
+
+    // render previous view if the tree is inactive and kept-alive
+    if (inactive) {
+      var cachedData = cache[name];
+      var cachedComponent = cachedData && cachedData.component;
+      if (cachedComponent) {
+        // #2301
+        // pass props
+        if (cachedData.configProps) {
+          fillPropsinData(cachedComponent, data, cachedData.route, cachedData.configProps);
+        }
+        return h(cachedComponent, data, children)
+      } else {
+        // render previous empty view
+        return h()
+      }
+    }
+
+    var matched = route.matched[depth];
+    var component = matched && matched.components[name];
+
+    // render empty node if no matched route or no config component
+    if (!matched || !component) {
+      cache[name] = null;
+      return h()
+    }
+
+    // cache component
+    cache[name] = { component: component };
+
+    // attach instance registration hook
+    // this will be called in the instance's injected lifecycle hooks
+    data.registerRouteInstance = function (vm, val) {
+      // val could be undefined for unregistration
+      var current = matched.instances[name];
+      if (
+        (val && current !== vm) ||
+        (!val && current === vm)
+      ) {
+        matched.instances[name] = val;
+      }
+    }
+
+    // also register instance in prepatch hook
+    // in case the same component instance is reused across different routes
+    ;(data.hook || (data.hook = {})).prepatch = function (_, vnode) {
+      matched.instances[name] = vnode.componentInstance;
+    };
+
+    // register instance in init hook
+    // in case kept-alive component be actived when routes changed
+    data.hook.init = function (vnode) {
+      if (vnode.data.keepAlive &&
+        vnode.componentInstance &&
+        vnode.componentInstance !== matched.instances[name]
+      ) {
+        matched.instances[name] = vnode.componentInstance;
+      }
+
+      // if the route transition has already been confirmed then we weren't
+      // able to call the cbs during confirmation as the component was not
+      // registered yet, so we call it here.
+      handleRouteEntered(route);
+    };
+
+    var configProps = matched.props && matched.props[name];
+    // save route and configProps in cache
+    if (configProps) {
+      extend(cache[name], {
+        route: route,
+        configProps: configProps
+      });
+      fillPropsinData(component, data, route, configProps);
+    }
+
+    return h(component, data, children)
+  }
+};
+
+function fillPropsinData (component, data, route, configProps) {
+  // resolve props
+  var propsToPass = data.props = resolveProps(route, configProps);
+  if (propsToPass) {
+    // clone to prevent mutation
+    propsToPass = data.props = extend({}, propsToPass);
+    // pass non-declared props as attrs
+    var attrs = data.attrs = data.attrs || {};
+    for (var key in propsToPass) {
+      if (!component.props || !(key in component.props)) {
+        attrs[key] = propsToPass[key];
+        delete propsToPass[key];
+      }
+    }
+  }
+}
+
+function resolveProps (route, config) {
+  switch (typeof config) {
+    case 'undefined':
+      return
+    case 'object':
+      return config
+    case 'function':
+      return config(route)
+    case 'boolean':
+      return config ? route.params : undefined
+    default:
+      if (true) {
+        warn(
+          false,
+          "props in \"" + (route.path) + "\" is a " + (typeof config) + ", " +
+          "expecting an object, function or boolean."
+        );
+      }
+  }
 }
 
 /*  */
@@ -70153,6 +70683,14 @@ function addRouteRecord (
         path || name
       )) + " cannot be a " + "string id. Use an actual component instead."
     );
+
+    warn(
+      // eslint-disable-next-line no-control-regex
+      !/[^\u0000-\u007F]+/.test(path),
+      "Route with path \"" + path + "\" contains unencoded characters, make sure " +
+        "your path is correctly encoded before passing it to the router. Use " +
+        "encodeURI to encode static segments of your path."
+    );
   }
 
   var pathToRegexpOptions =
@@ -70168,6 +70706,7 @@ function addRouteRecord (
     regex: compileRouteRegex(normalizedPath, pathToRegexpOptions),
     components: route.components || { default: route.component },
     instances: {},
+    enteredCbs: {},
     name: name,
     parent: parent,
     matchAs: matchAs,
@@ -70467,10 +71006,9 @@ function matchRoute (
 
   for (var i = 1, len = m.length; i < len; ++i) {
     var key = regex.keys[i - 1];
-    var val = typeof m[i] === 'string' ? decodeURIComponent(m[i]) : m[i];
     if (key) {
       // Fix #1994: using * with props: true generates a param named 0
-      params[key.name || 'pathMatch'] = val;
+      params[key.name || 'pathMatch'] = typeof m[i] === 'string' ? decode(m[i]) : m[i];
     }
   }
 
@@ -70660,7 +71198,17 @@ function scrollToPosition (shouldScroll, position) {
   }
 
   if (position) {
-    window.scrollTo(position.x, position.y);
+    // $flow-disable-line
+    if ('scrollBehavior' in document.documentElement.style) {
+      window.scrollTo({
+        left: position.x,
+        top: position.y,
+        // $flow-disable-line
+        behavior: shouldScroll.behavior
+      });
+    } else {
+      window.scrollTo(position.x, position.y);
+    }
   }
 }
 
@@ -70725,6 +71273,7 @@ function runQueue (queue, fn, cb) {
   step(0);
 }
 
+// When changing thing, also edit router.d.ts
 var NavigationFailureType = {
   redirected: 2,
   aborted: 4,
@@ -70968,10 +71517,10 @@ History.prototype.transitionTo = function transitionTo (
     // Exception should still be thrown
     throw e
   }
+  var prev = this.current;
   this.confirmTransition(
     route,
     function () {
-      var prev = this$1.current;
       this$1.updateRoute(route);
       onComplete && onComplete(route);
       this$1.ensureURL();
@@ -70992,16 +71541,14 @@ History.prototype.transitionTo = function transitionTo (
         onAbort(err);
       }
       if (err && !this$1.ready) {
-        this$1.ready = true;
-        // Initial redirection should still trigger the onReady onSuccess
+        // Initial redirection should not mark the history as ready yet
+        // because it's triggered by the redirection instead
         // https://github.com/vuejs/vue-router/issues/3225
-        if (!isNavigationFailure(err, NavigationFailureType.redirected)) {
+        // https://github.com/vuejs/vue-router/issues/3331
+        if (!isNavigationFailure(err, NavigationFailureType.redirected) || prev !== START) {
+          this$1.ready = true;
           this$1.readyErrorCbs.forEach(function (cb) {
             cb(err);
-          });
-        } else {
-          this$1.readyCbs.forEach(function (cb) {
-            cb(route);
           });
         }
       }
@@ -71013,6 +71560,7 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
     var this$1 = this;
 
   var current = this.current;
+  this.pending = route;
   var abort = function (err) {
     // changed after adding errors with
     // https://github.com/vuejs/vue-router/pull/3047 before that change,
@@ -71062,7 +71610,6 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
     resolveAsyncComponents(activated)
   );
 
-  this.pending = route;
   var iterator = function (hook, next) {
     if (this$1.pending !== route) {
       return abort(createNavigationCancelledError(current, route))
@@ -71099,11 +71646,9 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
   };
 
   runQueue(queue, iterator, function () {
-    var postEnterCbs = [];
-    var isValid = function () { return this$1.current === route; };
     // wait until async components are resolved before
     // extracting in-component enter guards
-    var enterGuards = extractEnterGuards(activated, postEnterCbs, isValid);
+    var enterGuards = extractEnterGuards(activated);
     var queue = enterGuards.concat(this$1.router.resolveHooks);
     runQueue(queue, iterator, function () {
       if (this$1.pending !== route) {
@@ -71113,9 +71658,7 @@ History.prototype.confirmTransition = function confirmTransition (route, onCompl
       onComplete(route);
       if (this$1.router.app) {
         this$1.router.app.$nextTick(function () {
-          postEnterCbs.forEach(function (cb) {
-            cb();
-          });
+          handleRouteEntered(route);
         });
       }
     });
@@ -71131,11 +71674,18 @@ History.prototype.setupListeners = function setupListeners () {
   // Default implementation is empty
 };
 
-History.prototype.teardownListeners = function teardownListeners () {
+History.prototype.teardown = function teardown () {
+  // clean up event listeners
+  // https://github.com/vuejs/vue-router/issues/2341
   this.listeners.forEach(function (cleanupListener) {
     cleanupListener();
   });
   this.listeners = [];
+
+  // reset current history route
+  // https://github.com/vuejs/vue-router/issues/3294
+  this.current = START;
+  this.pending = null;
 };
 
 function normalizeBase (base) {
@@ -71221,15 +71771,13 @@ function bindGuard (guard, instance) {
 }
 
 function extractEnterGuards (
-  activated,
-  cbs,
-  isValid
+  activated
 ) {
   return extractGuards(
     activated,
     'beforeRouteEnter',
     function (guard, _, match, key) {
-      return bindEnterGuard(guard, match, key, cbs, isValid)
+      return bindEnterGuard(guard, match, key)
     }
   )
 }
@@ -71237,42 +71785,18 @@ function extractEnterGuards (
 function bindEnterGuard (
   guard,
   match,
-  key,
-  cbs,
-  isValid
+  key
 ) {
   return function routeEnterGuard (to, from, next) {
     return guard(to, from, function (cb) {
       if (typeof cb === 'function') {
-        cbs.push(function () {
-          // #750
-          // if a router-view is wrapped with an out-in transition,
-          // the instance may not have been registered at this time.
-          // we will need to poll for registration until current route
-          // is no longer valid.
-          poll(cb, match.instances, key, isValid);
-        });
+        if (!match.enteredCbs[key]) {
+          match.enteredCbs[key] = [];
+        }
+        match.enteredCbs[key].push(cb);
       }
       next(cb);
     })
-  }
-}
-
-function poll (
-  cb, // somehow flow cannot infer this is a function
-  instances,
-  key,
-  isValid
-) {
-  if (
-    instances[key] &&
-    !instances[key]._isBeingDestroyed // do not reuse being destroyed instance
-  ) {
-    cb(instances[key]);
-  } else if (isValid()) {
-    setTimeout(function () {
-      poll(cb, instances, key, isValid);
-    }, 16);
   }
 }
 
@@ -71369,7 +71893,7 @@ var HTML5History = /*@__PURE__*/(function (History) {
 }(History));
 
 function getLocation (base) {
-  var path = decodeURI(window.location.pathname);
+  var path = window.location.pathname;
   if (base && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {
     path = path.slice(base.length);
   }
@@ -71509,18 +72033,6 @@ function getHash () {
   if (index < 0) { return '' }
 
   href = href.slice(index + 1);
-  // decode the hash but not the search or hash
-  // as search(query) is already decoded
-  // https://github.com/vuejs/vue-router/issues/2708
-  var searchIndex = href.indexOf('?');
-  if (searchIndex < 0) {
-    var hashIndex = href.indexOf('#');
-    if (hashIndex > -1) {
-      href = decodeURI(href.slice(0, hashIndex)) + href.slice(hashIndex);
-    } else { href = decodeURI(href); }
-  } else {
-    href = decodeURI(href.slice(0, searchIndex)) + href.slice(searchIndex);
-  }
 
   return href
 }
@@ -71599,8 +72111,12 @@ var AbstractHistory = /*@__PURE__*/(function (History) {
     this.confirmTransition(
       route,
       function () {
+        var prev = this$1.current;
         this$1.index = targetIndex;
         this$1.updateRoute(route);
+        this$1.router.afterHooks.forEach(function (hook) {
+          hook && hook(route, prev);
+        });
       },
       function (err) {
         if (isNavigationFailure(err, NavigationFailureType.duplicated)) {
@@ -71695,11 +72211,7 @@ VueRouter.prototype.init = function init (app /* Vue component instance */) {
     // we do not release the router so it can be reused
     if (this$1.app === app) { this$1.app = this$1.apps[0] || null; }
 
-    if (!this$1.app) {
-      // clean up event listeners
-      // https://github.com/vuejs/vue-router/issues/2341
-      this$1.history.teardownListeners();
-    }
+    if (!this$1.app) { this$1.history.teardown(); }
   });
 
   // main app previously initialized
@@ -71861,7 +72373,7 @@ function createHref (base, fullPath, mode) {
 }
 
 VueRouter.install = install;
-VueRouter.version = '3.4.3';
+VueRouter.version = '3.4.9';
 VueRouter.isNavigationFailure = isNavigationFailure;
 VueRouter.NavigationFailureType = NavigationFailureType;
 
@@ -71883,8 +72395,8 @@ if (inBrowser && window.Vue) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global, setImmediate) {/*!
- * Vue.js v2.6.11
- * (c) 2014-2019 Evan You
+ * Vue.js v2.6.12
+ * (c) 2014-2020 Evan You
  * Released under the MIT License.
  */
 
@@ -77323,7 +77835,7 @@ Object.defineProperty(Vue, 'FunctionalRenderContext', {
   value: FunctionalRenderContext
 });
 
-Vue.version = '2.6.11';
+Vue.version = '2.6.12';
 
 /*  */
 
@@ -79529,7 +80041,7 @@ function updateDOMProps (oldVnode, vnode) {
       // skip the update if old and new VDOM state is the same.
       // `value` is handled separately because the DOM value may be temporarily
       // out of sync with VDOM state due to focus, composition and modifiers.
-      // This  #4521 by skipping the unnecesarry `checked` update.
+      // This  #4521 by skipping the unnecessary `checked` update.
       cur !== oldProps[key]
     ) {
       // some property updates can throw
@@ -81774,7 +82286,7 @@ function parse (
       }
     },
     comment: function comment (text, start, end) {
-      // adding anyting as a sibling to the root node is forbidden
+      // adding anything as a sibling to the root node is forbidden
       // comments should still be allowed, but ignored
       if (currentParent) {
         var child = {
@@ -87491,8 +88003,8 @@ module.exports = JSON.parse("{\"en\":{\"message\":{\"メールアドレス\":\"E
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/ryuta/docker-laravel-step/src/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/ryuta/docker-laravel-step/src/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/ryuta/app/docker-laravel-step/src/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/ryuta/app/docker-laravel-step/src/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

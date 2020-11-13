@@ -44,14 +44,13 @@ return [
         ],
 
         'mysql' => [
-            //第二引数はherokuの設定
             'driver' => 'mysql',
             'url' => env('DATABASE_URL', ''),
             'host' => env('DB_HOST', 'mysql'),
             'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'laravel_step'),
-            'username' => env('DB_USERNAME', 'homestead'),
-            'password' => env('DB_PASSWORD', 'secret'),
+            'database' => env('DB_DATABASE', ''),
+            'username' => env('DB_USERNAME', ''),
+            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8',
             'collation' => 'utf8_general_ci',
