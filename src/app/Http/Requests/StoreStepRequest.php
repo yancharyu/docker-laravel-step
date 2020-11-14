@@ -35,7 +35,7 @@ class StoreStepRequest extends FormRequest
             'description' => ['required', 'string', 'max:1000'],
             'stages.*.title' => ['required', 'string', 'max:255'],
             'stages.*.summary' => ['string', 'nullable', 'max:1000'],
-            'stages.*.time' => ['required', 'numeric', 'max:1000'],
+            'stages.*.time' => ['required', 'integer', 'max:1000'],
         ];
     }
 
@@ -52,7 +52,8 @@ class StoreStepRequest extends FormRequest
             'category.integer' => __('半角数字で入力してください'),
             'max' => __(':max文字以内で入力してください'),
             'numeric' => __('半角数字で指定してください'),
-            'stages.*.time.max' => __('1000時間以内で設定してください')
+            'stages.*.time.max' => __('1000時間以内で設定してください'),
+            'stages.*.time.integer' => __('目安達成時間は整数値で入力してください')
         ];
     }
 }

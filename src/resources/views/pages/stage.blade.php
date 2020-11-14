@@ -13,7 +13,7 @@
 
         {{ __('概要') }}
         <div class="p-stage__summary">{{ $stage->summary ?? '概要はありません' }}</div>
-        <p class="p-stage__time">{{ __('目安達成時間') }}： {{ intval($stage->time) }}h</p>
+        <p class="p-stage__time">{{ __('目安達成時間') }}： {{ $stage->time }}h</p>
         {{-- 既にクリア済みならクリア済みボタンを表示 --}}
         @if($is_achievement)
         <button class="c-btn c-btn--flRight c-btn--disabled p-stage__alClearButton">{{ __('クリア済み') }}</button>
