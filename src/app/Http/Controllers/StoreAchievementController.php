@@ -25,14 +25,7 @@ class StoreAchievementController extends Controller
     {
         $stage_id = $request->stage_id;
 
-        // 環境によって分岐する(cleardbは主キーの自動増分が10ずつ増えるから)
-        // 開発環境
-        if (config('app.env') === 'local') {
-            $next_stage_id = $stage_id + 1; // 次に表示する用のステージID
-            // 本番環境
-        } elseif (config('app.env') === 'production') {
-            $next_stage_id = $stage_id + 10;
-        }
+        $next_stage_id = $stage_id + 1;
 
         $stage = Stage::findOrFail($stage_id); // STEP取得
         $stage->achievements()->create(['user_id' => Auth::id()]); // クリア記録を登録
