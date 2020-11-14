@@ -19,6 +19,7 @@ Route::get('/', 'ShowHomeController')->name('home');   // ホームページ
 Auth::routes(['verify' => true]); // 認証ルート
 
 Route::middleware(['auth', 'verified'])->group(function () { // authルート
+    // Route::middleware(['auth'])->group(function () { // authルート
     // メール認証成功画面表示
     Route::get('verified', 'ShowVerifiedPageController')->name('verified');
     // 退会フォーム表示

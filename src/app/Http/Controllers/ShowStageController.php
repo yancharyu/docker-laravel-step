@@ -41,14 +41,7 @@ class ShowStageController extends Controller
             // 1以上の場合はひとつ前のステージをクリアしているかを検索して、その真偽値を返す
             $is_achievement = Achievement::getIsAchievement($stage_id);
 
-            // herokuのcleardbはデータベースの主キーを10ずつincrementするので環境によって探すstage_idを変更する
-            // =========== 開発環境の場合 ================
-            if (config('app.env') === 'local') {
-                $is_before_stage_achievement = Achievement::getIsAchievement($stage_id - 1);
-                // 本番環境の場合
-            } elseif (config('app.env') === 'production') {
-                $is_before_stage_achievement = Achievement::getIsAchievement($stage_id - 10);
-            }
+            $is_before_stage_achievement = Achievement::getIsAchievement($stage_id - 1);
         }
         return view('pages.stage', compact('stage', 'stages', 'is_achievement', 'is_before_stage_achievement'));
     }
