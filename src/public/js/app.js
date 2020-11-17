@@ -2328,7 +2328,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
      */
     onFileChange: function onFileChange(e) {
       var file = e.target.files[0];
-      var maxFileSize = 3072000; // ファイルサイズが最大サイズより大きかったらエラーメッセージを表示してinput内を空にする
+      var maxFileSize = 1048576; // ファイルサイズが最大サイズより大きかったらエラーメッセージを表示してinput内を空にする
 
       if (file.size >= maxFileSize) {
         var fileInput = $('.js-fileInput');

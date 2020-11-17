@@ -142,7 +142,7 @@ export default {
      */
     onFileChange(e) {
       const file = e.target.files[0];
-      const maxFileSize = 3072000;
+      const maxFileSize = 1048576;
 
       // ファイルサイズが最大サイズより大きかったらエラーメッセージを表示してinput内を空にする
       if (file.size >= maxFileSize) {
