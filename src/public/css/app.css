@@ -796,8 +796,8 @@ select:-webkit-autofill:focus {
 
 @media screen and (max-width: 898px) {
   .c-modal__inner {
-    width: 60%;
-    height: 160px;
+    width: 65%;
+    min-height: 210px;
   }
 }
 
@@ -1824,7 +1824,7 @@ select:-webkit-autofill:focus {
   }
 }
 
-.p-mypage__optionIcon {
+.p-mypage__menuIcon {
   position: absolute;
   top: 5%;
   left: 3%;
@@ -1996,17 +1996,34 @@ select:-webkit-autofill:focus {
   flex-flow: row wrap;
   justify-content: space-around;
   margin-bottom: 32px;
+  list-style: none;
 }
 
 @media screen and (max-width: 898px) {
   .p-mypageSidebar__relationsContainer {
-    display: none;
+    margin-bottom: 0;
   }
+}
+
+.p-mypageSidebar__relationsContainer > .p-mypageSidebar__listItem > a {
+  border-bottom: none;
 }
 
 .p-mypageSidebar__follow:hover,
 .p-mypageSidebar__follower:hover {
   text-decoration: underline;
+}
+
+@media screen and (max-width: 898px) {
+  .p-mypageSidebar__follow,
+  .p-mypageSidebar__follower {
+    font-size: 0.8rem;
+  }
+
+  .p-mypageSidebar__follow:hover,
+  .p-mypageSidebar__follower:hover {
+    text-decoration: none;
+  }
 }
 
 @media screen and (max-width: 898px) {

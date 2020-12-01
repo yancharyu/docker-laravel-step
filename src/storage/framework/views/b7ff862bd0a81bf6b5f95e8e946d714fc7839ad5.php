@@ -1,0 +1,2 @@
+<input type="checkbox" name="<?php echo e($inputName); ?>" id="<?php echo e($inputId ?? $inputName); ?>" <?php echo e(old($inputName) ? 'checked' : ''); ?> class="c-checkbox">
+<label class="c-checkbox__label" for="<?php echo e($inputName); ?>"><?php echo e(__($labelTitle)); ?></label><?php /**PATH /work/resources/views/components/checkbox.blade.php ENDPATH**/ ?>

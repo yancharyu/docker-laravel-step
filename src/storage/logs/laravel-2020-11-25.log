@@ -1,0 +1,652 @@
+[2020-11-25 21:28:17] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(162): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(146): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#23 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#24 /work/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#25 {main}
+"} 
+[2020-11-25 21:29:46] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(322): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#23 /work/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 {main}
+"} 
+[2020-11-25 21:30:03] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(322): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#23 /work/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 {main}
+"} 
+[2020-11-25 21:32:34] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(162): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(146): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#23 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#24 /work/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#25 {main}
+"} 
+[2020-11-25 21:33:16] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(162): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(146): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#23 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#24 /work/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#25 {main}
+"} 
+[2020-11-25 21:33:46] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(162): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(146): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#23 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#24 /work/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#25 {main}
+"} 
+[2020-11-25 21:33:53] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(162): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(146): Illuminate\\Foundation\\Http\\Kernel->bootstrap()
+#23 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#24 /work/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#25 {main}
+"} 
+[2020-11-25 21:35:10] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(322): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#23 /work/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 {main}
+"} 
+[2020-11-25 21:35:13] local.ERROR: Please provide a valid cache path. {"exception":"[object] (InvalidArgumentException(code: 0): Please provide a valid cache path. at /work/vendor/laravel/framework/src/Illuminate/View/Compilers/Compiler.php:36)
+[stacktrace]
+#0 /work/vendor/laravel/framework/src/Illuminate/View/ViewServiceProvider.php(141): Illuminate\\View\\Compilers\\Compiler->__construct(Object(Illuminate\\Filesystem\\Filesystem), false)
+#1 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(785): Illuminate\\View\\ViewServiceProvider->Illuminate\\View\\{closure}(Object(Illuminate\\Foundation\\Application), Array)
+#2 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(667): Illuminate\\Container\\Container->build(Object(Closure))
+#3 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(615): Illuminate\\Container\\Container->resolve('blade.compiler', Array)
+#4 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(767): Illuminate\\Container\\Container->make('blade.compiler', Array)
+#5 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(1227): Illuminate\\Foundation\\Application->make('blade.compiler')
+#6 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(176): Illuminate\\Container\\Container->offsetGet('blade.compiler')
+#7 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(144): Illuminate\\Support\\Facades\\Facade::resolveFacadeInstance('blade.compiler')
+#8 /work/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php(233): Illuminate\\Support\\Facades\\Facade::getFacadeRoot()
+#9 /work/app/Providers/AppServiceProvider.php(31): Illuminate\\Support\\Facades\\Facade::__callStatic('component', Array)
+#10 [internal function]: App\\Providers\\AppServiceProvider->boot()
+#11 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(32): call_user_func_array(Array, Array)
+#12 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(90): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#13 /work/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php(34): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Array, Object(Closure))
+#14 /work/vendor/laravel/framework/src/Illuminate/Container/Container.php(576): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Array, Array, NULL)
+#15 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(827): Illuminate\\Container\\Container->call(Array)
+#16 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(810): Illuminate\\Foundation\\Application->bootProvider(Object(App\\Providers\\AppServiceProvider))
+#17 [internal function]: Illuminate\\Foundation\\Application->Illuminate\\Foundation\\{closure}(Object(App\\Providers\\AppServiceProvider), 17)
+#18 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(811): array_walk(Array, Object(Closure))
+#19 /work/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/BootProviders.php(17): Illuminate\\Foundation\\Application->boot()
+#20 /work/vendor/laravel/framework/src/Illuminate/Foundation/Application.php(210): Illuminate\\Foundation\\Bootstrap\\BootProviders->bootstrap(Object(Illuminate\\Foundation\\Application))
+#21 /work/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(322): Illuminate\\Foundation\\Application->bootstrapWith(Array)
+#22 /work/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(131): Illuminate\\Foundation\\Console\\Kernel->bootstrap()
+#23 /work/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#24 {main}
+"} 
+[2020-11-25 21:38:16] local.DEBUG: SQL {"sql":"select * from `users` where `email` = 's.ryu1135@gmail.com' and `users`.`deleted_at` is null limit 1","time":"115.67 ms"} 
+[2020-11-25 21:38:16] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"14.66 ms"} 
+[2020-11-25 21:38:18] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"17.5 ms"} 
+[2020-11-25 21:38:18] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"19.46 ms"} 
+[2020-11-25 21:38:19] local.DEBUG: SQL {"sql":"select * from `categories`","time":"37.53 ms"} 
+[2020-11-25 21:38:19] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"16.5 ms"} 
+[2020-11-25 21:38:19] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"9.56 ms"} 
+[2020-11-25 21:38:19] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"5.17 ms"} 
+[2020-11-25 21:38:19] local.DEBUG: SQL {"sql":"select * from `challenges` where `challenges`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"10.03 ms"} 
+[2020-11-25 21:38:19] local.DEBUG: SQL {"sql":"select * from `clears` where `clears`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"11.36 ms"} 
+[2020-11-25 21:38:45] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"13.47 ms"} 
+[2020-11-25 21:38:45] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`user_id` as `pivot_user_id`, `relations`.`followed_id` as `pivot_followed_id` from `users` inner join `relations` on `users`.`id` = `relations`.`followed_id` where `relations`.`user_id` in (1) and `users`.`deleted_at` is null","time":"11.75 ms"} 
+[2020-11-25 21:38:45] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`followed_id` as `pivot_followed_id`, `relations`.`user_id` as `pivot_user_id` from `users` inner join `relations` on `users`.`id` = `relations`.`user_id` where `relations`.`followed_id` in (1) and `users`.`deleted_at` is null","time":"1.88 ms"} 
+[2020-11-25 21:38:46] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"15.11 ms"} 
+[2020-11-25 21:38:46] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`user_id` = 1 and `steps`.`user_id` is not null and `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"7.12 ms"} 
+[2020-11-25 21:38:46] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"1.32 ms"} 
+[2020-11-25 21:38:46] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"7.77 ms"} 
+[2020-11-25 21:38:47] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"13.95 ms"} 
+[2020-11-25 21:38:47] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`user_id` = 1 and `steps`.`user_id` is not null and `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 3","time":"1.87 ms"} 
+[2020-11-25 21:38:55] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"14.09 ms"} 
+[2020-11-25 21:38:56] local.DEBUG: SQL {"sql":"select count(*) as aggregate from `users` where `email` = 's.ryu1135@gmail.com' and `id` <> '1' and `deleted_at` is null","time":"7.48 ms"} 
+[2020-11-25 21:38:58] local.ERROR: Error executing "PutObject" on "https://yanchar-bucket.s3.amazonaws.com/Go4accvtD9PyQlPoktkuGiqp1L2oO2CinNJRlkBC.jpeg"; AWS HTTP error: Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/Go4accvtD9PyQlPoktkuGiqp1L2oO2CinNJRlkBC.jpeg` resulted in a `404 Not Found` response:
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ NoSuchBucket (client): The specified bucket does not exist - <?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><BucketName>yanchar-bucket</BucketName><RequestId>2Z4V2KBJ8YBTCG3W</RequestId><HostId>Zo22XyfNH4EBFTdyaVC2Unz4FANKHOVjVBRodDtiujFNGa+XG/2/mwbwE3w1uq6rn4iTV1ULzIg=</HostId></Error> {"userId":1,"exception":"[object] (Aws\\S3\\Exception\\S3Exception(code: 0): Error executing \"PutObject\" on \"https://yanchar-bucket.s3.amazonaws.com/Go4accvtD9PyQlPoktkuGiqp1L2oO2CinNJRlkBC.jpeg\"; AWS HTTP error: Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/Go4accvtD9PyQlPoktkuGiqp1L2oO2CinNJRlkBC.jpeg` resulted in a `404 Not Found` response:
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ NoSuchBucket (client): The specified bucket does not exist - <?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><BucketName>yanchar-bucket</BucketName><RequestId>2Z4V2KBJ8YBTCG3W</RequestId><HostId>Zo22XyfNH4EBFTdyaVC2Unz4FANKHOVjVBRodDtiujFNGa+XG/2/mwbwE3w1uq6rn4iTV1ULzIg=</HostId></Error> at /work/vendor/aws/aws-sdk-php/src/WrappedHttpHandler.php:195, GuzzleHttp\\Exception\\ClientException(code: 404): Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/Go4accvtD9PyQlPoktkuGiqp1L2oO2CinNJRlkBC.jpeg` resulted in a `404 Not Found` response:
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ at /work/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:111)
+[stacktrace]
+#0 /work/vendor/aws/aws-sdk-php/src/WrappedHttpHandler.php(97): Aws\\WrappedHttpHandler->parseError(Array, Object(GuzzleHttp\\Psr7\\Request), Object(Aws\\Command), Array)
+#1 /work/vendor/guzzlehttp/promises/src/Promise.php(203): Aws\\WrappedHttpHandler->Aws\\{closure}(Array)
+#2 /work/vendor/guzzlehttp/promises/src/Promise.php(174): GuzzleHttp\\Promise\\Promise::callHandler(2, Array, Array)
+#3 /work/vendor/guzzlehttp/promises/src/RejectedPromise.php(40): GuzzleHttp\\Promise\\Promise::GuzzleHttp\\Promise\\{closure}(Array)
+#4 /work/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\\Promise\\RejectedPromise::GuzzleHttp\\Promise\\{closure}()
+#5 /work/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php(155): GuzzleHttp\\Promise\\TaskQueue->run()
+#6 /work/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php(182): GuzzleHttp\\Handler\\CurlMultiHandler->tick()
+#7 /work/vendor/guzzlehttp/promises/src/Promise.php(246): GuzzleHttp\\Handler\\CurlMultiHandler->execute(true)
+#8 /work/vendor/guzzlehttp/promises/src/Promise.php(223): GuzzleHttp\\Promise\\Promise->invokeWaitFn()
+#9 /work/vendor/guzzlehttp/promises/src/Promise.php(267): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#10 /work/vendor/guzzlehttp/promises/src/Promise.php(225): GuzzleHttp\\Promise\\Promise->invokeWaitList()
+#11 /work/vendor/guzzlehttp/promises/src/Promise.php(267): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#12 /work/vendor/guzzlehttp/promises/src/Promise.php(225): GuzzleHttp\\Promise\\Promise->invokeWaitList()
+#13 /work/vendor/guzzlehttp/promises/src/Promise.php(62): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#14 /work/vendor/aws/aws-sdk-php/src/S3/S3ClientTrait.php(34): GuzzleHttp\\Promise\\Promise->wait()
+#15 /work/vendor/league/flysystem-aws-s3-v3/src/AwsS3Adapter.php(611): Aws\\S3\\S3Client->upload('yanchar-bucket', 'Go4accvtD9PyQlP...', Resource id #676, 'public-read', Array)
+#16 /work/vendor/league/flysystem-aws-s3-v3/src/AwsS3Adapter.php(393): League\\Flysystem\\AwsS3v3\\AwsS3Adapter->upload('Go4accvtD9PyQlP...', Resource id #676, Object(League\\Flysystem\\Config))
+#17 /work/vendor/league/flysystem/src/Filesystem.php(122): League\\Flysystem\\AwsS3v3\\AwsS3Adapter->writeStream('Go4accvtD9PyQlP...', Resource id #676, Object(League\\Flysystem\\Config))
+#18 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(209): League\\Flysystem\\Filesystem->putStream('Go4accvtD9PyQlP...', Resource id #676, Object(League\\Flysystem\\Config))
+#19 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(243): Illuminate\\Filesystem\\FilesystemAdapter->put('Go4accvtD9PyQlP...', Resource id #676, Array)
+#20 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(223): Illuminate\\Filesystem\\FilesystemAdapter->putFileAs('Go4accvtD9PyQlP...', Object(Illuminate\\Http\\UploadedFile), 'Go4accvtD9PyQlP...', 'public')
+#21 /work/app/Http/Controllers/Api/ApiEditProfileController.php(36): Illuminate\\Filesystem\\FilesystemAdapter->putFile('', Object(Illuminate\\Http\\UploadedFile), 'public')
+#22 [internal function]: App\\Http\\Controllers\\Api\\ApiEditProfileController->__invoke(Object(App\\Http\\Requests\\EditProfileRequest))
+#23 /work/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): call_user_func_array(Array, Array)
+#24 /work/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('__invoke', Array)
+#25 /work/vendor/laravel/framework/src/Illuminate/Routing/Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Api\\ApiEditProfileController), '__invoke')
+#26 /work/vendor/laravel/framework/src/Illuminate/Routing/Route.php(176): Illuminate\\Routing\\Route->runController()
+#27 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(680): Illuminate\\Routing\\Route->run()
+#28 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /work/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#31 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 /work/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(75): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 /work/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#39 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /work/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(56): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /work/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /work/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(66): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(682): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(657): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#53 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(623): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#54 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(612): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#55 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#56 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#57 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#61 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#64 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#66 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /work/vendor/fideloper/proxy/src/TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#70 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#73 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#74 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#75 /work/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#76 {main}
+"} 
+[2020-11-25 21:39:07] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"13.58 ms"} 
+[2020-11-25 21:39:07] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`user_id` as `pivot_user_id`, `relations`.`followed_id` as `pivot_followed_id` from `users` inner join `relations` on `users`.`id` = `relations`.`followed_id` where `relations`.`user_id` in (1) and `users`.`deleted_at` is null","time":"1.65 ms"} 
+[2020-11-25 21:39:07] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`followed_id` as `pivot_followed_id`, `relations`.`user_id` as `pivot_user_id` from `users` inner join `relations` on `users`.`id` = `relations`.`user_id` where `relations`.`followed_id` in (1) and `users`.`deleted_at` is null","time":"2.33 ms"} 
+[2020-11-25 21:39:08] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"11.09 ms"} 
+[2020-11-25 21:39:08] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`user_id` = 1 and `steps`.`user_id` is not null and `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"5.2 ms"} 
+[2020-11-25 21:39:08] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"3.34 ms"} 
+[2020-11-25 21:39:08] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"3.46 ms"} 
+[2020-11-25 21:39:18] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"7.64 ms"} 
+[2020-11-25 21:39:18] local.DEBUG: SQL {"sql":"select count(*) as aggregate from `users` where `email` = 's.ryu1135@gmail.com' and `id` <> '1' and `deleted_at` is null","time":"1.41 ms"} 
+[2020-11-25 21:39:20] local.ERROR: Error executing "PutObject" on "https://yanchar-bucket.s3.amazonaws.com/Jx2CT4542eb0rIRswB6Conn6qysWDwJXeyDhNavv.jpeg"; AWS HTTP error: Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/Jx2CT4542eb0rIRswB6Conn6qysWDwJXeyDhNavv.jpeg` resulted in a `404 Not Found` response:
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ NoSuchBucket (client): The specified bucket does not exist - <?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><BucketName>yanchar-bucket</BucketName><RequestId>02D0AC102888B1CE</RequestId><HostId>5k7gy7B2dZWka5OhlAv8onkrEC1PGfRu5GAJHiu9NLH0gjqP4nipohwMsqP3OwSj9P/lrz0U7c4=</HostId></Error> {"userId":1,"exception":"[object] (Aws\\S3\\Exception\\S3Exception(code: 0): Error executing \"PutObject\" on \"https://yanchar-bucket.s3.amazonaws.com/Jx2CT4542eb0rIRswB6Conn6qysWDwJXeyDhNavv.jpeg\"; AWS HTTP error: Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/Jx2CT4542eb0rIRswB6Conn6qysWDwJXeyDhNavv.jpeg` resulted in a `404 Not Found` response:
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ NoSuchBucket (client): The specified bucket does not exist - <?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><BucketName>yanchar-bucket</BucketName><RequestId>02D0AC102888B1CE</RequestId><HostId>5k7gy7B2dZWka5OhlAv8onkrEC1PGfRu5GAJHiu9NLH0gjqP4nipohwMsqP3OwSj9P/lrz0U7c4=</HostId></Error> at /work/vendor/aws/aws-sdk-php/src/WrappedHttpHandler.php:195, GuzzleHttp\\Exception\\ClientException(code: 404): Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/Jx2CT4542eb0rIRswB6Conn6qysWDwJXeyDhNavv.jpeg` resulted in a `404 Not Found` response:
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ at /work/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:111)
+[stacktrace]
+#0 /work/vendor/aws/aws-sdk-php/src/WrappedHttpHandler.php(97): Aws\\WrappedHttpHandler->parseError(Array, Object(GuzzleHttp\\Psr7\\Request), Object(Aws\\Command), Array)
+#1 /work/vendor/guzzlehttp/promises/src/Promise.php(203): Aws\\WrappedHttpHandler->Aws\\{closure}(Array)
+#2 /work/vendor/guzzlehttp/promises/src/Promise.php(174): GuzzleHttp\\Promise\\Promise::callHandler(2, Array, Array)
+#3 /work/vendor/guzzlehttp/promises/src/RejectedPromise.php(40): GuzzleHttp\\Promise\\Promise::GuzzleHttp\\Promise\\{closure}(Array)
+#4 /work/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\\Promise\\RejectedPromise::GuzzleHttp\\Promise\\{closure}()
+#5 /work/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php(155): GuzzleHttp\\Promise\\TaskQueue->run()
+#6 /work/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php(182): GuzzleHttp\\Handler\\CurlMultiHandler->tick()
+#7 /work/vendor/guzzlehttp/promises/src/Promise.php(246): GuzzleHttp\\Handler\\CurlMultiHandler->execute(true)
+#8 /work/vendor/guzzlehttp/promises/src/Promise.php(223): GuzzleHttp\\Promise\\Promise->invokeWaitFn()
+#9 /work/vendor/guzzlehttp/promises/src/Promise.php(267): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#10 /work/vendor/guzzlehttp/promises/src/Promise.php(225): GuzzleHttp\\Promise\\Promise->invokeWaitList()
+#11 /work/vendor/guzzlehttp/promises/src/Promise.php(267): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#12 /work/vendor/guzzlehttp/promises/src/Promise.php(225): GuzzleHttp\\Promise\\Promise->invokeWaitList()
+#13 /work/vendor/guzzlehttp/promises/src/Promise.php(62): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#14 /work/vendor/aws/aws-sdk-php/src/S3/S3ClientTrait.php(34): GuzzleHttp\\Promise\\Promise->wait()
+#15 /work/vendor/league/flysystem-aws-s3-v3/src/AwsS3Adapter.php(611): Aws\\S3\\S3Client->upload('yanchar-bucket', 'Jx2CT4542eb0rIR...', Resource id #679, 'public-read', Array)
+#16 /work/vendor/league/flysystem-aws-s3-v3/src/AwsS3Adapter.php(393): League\\Flysystem\\AwsS3v3\\AwsS3Adapter->upload('Jx2CT4542eb0rIR...', Resource id #679, Object(League\\Flysystem\\Config))
+#17 /work/vendor/league/flysystem/src/Filesystem.php(122): League\\Flysystem\\AwsS3v3\\AwsS3Adapter->writeStream('Jx2CT4542eb0rIR...', Resource id #679, Object(League\\Flysystem\\Config))
+#18 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(209): League\\Flysystem\\Filesystem->putStream('Jx2CT4542eb0rIR...', Resource id #679, Object(League\\Flysystem\\Config))
+#19 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(243): Illuminate\\Filesystem\\FilesystemAdapter->put('Jx2CT4542eb0rIR...', Resource id #679, Array)
+#20 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(223): Illuminate\\Filesystem\\FilesystemAdapter->putFileAs('Jx2CT4542eb0rIR...', Object(Illuminate\\Http\\UploadedFile), 'Jx2CT4542eb0rIR...', 'public')
+#21 /work/app/Http/Controllers/Api/ApiEditProfileController.php(36): Illuminate\\Filesystem\\FilesystemAdapter->putFile('', Object(Illuminate\\Http\\UploadedFile), 'public')
+#22 [internal function]: App\\Http\\Controllers\\Api\\ApiEditProfileController->__invoke(Object(App\\Http\\Requests\\EditProfileRequest))
+#23 /work/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): call_user_func_array(Array, Array)
+#24 /work/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('__invoke', Array)
+#25 /work/vendor/laravel/framework/src/Illuminate/Routing/Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Api\\ApiEditProfileController), '__invoke')
+#26 /work/vendor/laravel/framework/src/Illuminate/Routing/Route.php(176): Illuminate\\Routing\\Route->runController()
+#27 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(680): Illuminate\\Routing\\Route->run()
+#28 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /work/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#31 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 /work/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(75): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 /work/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#39 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /work/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(56): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /work/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /work/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(66): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(682): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(657): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#53 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(623): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#54 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(612): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#55 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#56 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#57 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#61 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#64 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#66 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /work/vendor/fideloper/proxy/src/TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#70 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#73 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#74 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#75 /work/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#76 {main}
+"} 
+[2020-11-25 21:39:30] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"10.1 ms"} 
+[2020-11-25 21:39:30] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`user_id` as `pivot_user_id`, `relations`.`followed_id` as `pivot_followed_id` from `users` inner join `relations` on `users`.`id` = `relations`.`followed_id` where `relations`.`user_id` in (1) and `users`.`deleted_at` is null","time":"3.6 ms"} 
+[2020-11-25 21:39:30] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`followed_id` as `pivot_followed_id`, `relations`.`user_id` as `pivot_user_id` from `users` inner join `relations` on `users`.`id` = `relations`.`user_id` where `relations`.`followed_id` in (1) and `users`.`deleted_at` is null","time":"2.24 ms"} 
+[2020-11-25 21:39:31] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"9.91 ms"} 
+[2020-11-25 21:39:31] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`user_id` = 1 and `steps`.`user_id` is not null and `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"2.98 ms"} 
+[2020-11-25 21:39:31] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"2.17 ms"} 
+[2020-11-25 21:39:31] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"1.62 ms"} 
+[2020-11-25 21:44:02] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"89.87 ms"} 
+[2020-11-25 21:44:03] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"12.5 ms"} 
+[2020-11-25 21:44:05] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"15.37 ms"} 
+[2020-11-25 21:44:05] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"12.11 ms"} 
+[2020-11-25 21:44:05] local.DEBUG: SQL {"sql":"select * from `categories`","time":"30.09 ms"} 
+[2020-11-25 21:44:05] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"8.88 ms"} 
+[2020-11-25 21:44:05] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"4.98 ms"} 
+[2020-11-25 21:44:05] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"8.68 ms"} 
+[2020-11-25 21:44:05] local.DEBUG: SQL {"sql":"select * from `challenges` where `challenges`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"112.44 ms"} 
+[2020-11-25 21:44:06] local.DEBUG: SQL {"sql":"select * from `clears` where `clears`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"4.41 ms"} 
+[2020-11-25 21:44:08] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"18.83 ms"} 
+[2020-11-25 21:44:08] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`user_id` as `pivot_user_id`, `relations`.`followed_id` as `pivot_followed_id` from `users` inner join `relations` on `users`.`id` = `relations`.`followed_id` where `relations`.`user_id` in (1) and `users`.`deleted_at` is null","time":"6.48 ms"} 
+[2020-11-25 21:44:08] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`followed_id` as `pivot_followed_id`, `relations`.`user_id` as `pivot_user_id` from `users` inner join `relations` on `users`.`id` = `relations`.`user_id` where `relations`.`followed_id` in (1) and `users`.`deleted_at` is null","time":"2.81 ms"} 
+[2020-11-25 21:44:09] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"15.35 ms"} 
+[2020-11-25 21:44:09] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`user_id` = 1 and `steps`.`user_id` is not null and `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"3.44 ms"} 
+[2020-11-25 21:44:09] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"1.74 ms"} 
+[2020-11-25 21:44:09] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"5.28 ms"} 
+[2020-11-25 21:44:18] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"11.17 ms"} 
+[2020-11-25 21:44:18] local.DEBUG: SQL {"sql":"select count(*) as aggregate from `users` where `email` = 's.ryu1135@gmail.com' and `id` <> '1' and `deleted_at` is null","time":"2.12 ms"} 
+[2020-11-25 21:44:24] local.ERROR: Error executing "PutObject" on "https://yanchar-bucket.s3.amazonaws.com/M8tT71Qk8zRsczOE6odZ0fO0ovN3lZKM30mX9r0r.jpeg"; AWS HTTP error: Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/M8tT71Qk8zRsczOE6odZ0fO0ovN3lZKM30mX9r0r.jpeg` resulted in a `404 Not Found` response:
+<?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ NoSuchBucket (client): The specified bucket does not exist - <?xml version="1.0" encoding="UTF-8"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><BucketName>yanchar-bucket</BucketName><RequestId>BC372FF9EEC5D958</RequestId><HostId>BTyFpGxV0R6bmCb82mRBfX77CcMwmF/+piWVJkUAjBmPhe70e576OFmZQ1OX9rgIe8U0/03G9b4=</HostId></Error> {"userId":1,"exception":"[object] (Aws\\S3\\Exception\\S3Exception(code: 0): Error executing \"PutObject\" on \"https://yanchar-bucket.s3.amazonaws.com/M8tT71Qk8zRsczOE6odZ0fO0ovN3lZKM30mX9r0r.jpeg\"; AWS HTTP error: Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/M8tT71Qk8zRsczOE6odZ0fO0ovN3lZKM30mX9r0r.jpeg` resulted in a `404 Not Found` response:
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ NoSuchBucket (client): The specified bucket does not exist - <?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Message><BucketName>yanchar-bucket</BucketName><RequestId>BC372FF9EEC5D958</RequestId><HostId>BTyFpGxV0R6bmCb82mRBfX77CcMwmF/+piWVJkUAjBmPhe70e576OFmZQ1OX9rgIe8U0/03G9b4=</HostId></Error> at /work/vendor/aws/aws-sdk-php/src/WrappedHttpHandler.php:195, GuzzleHttp\\Exception\\ClientException(code: 404): Client error: `PUT https://yanchar-bucket.s3.amazonaws.com/M8tT71Qk8zRsczOE6odZ0fO0ovN3lZKM30mX9r0r.jpeg` resulted in a `404 Not Found` response:
+<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<Error><Code>NoSuchBucket</Code><Message>The specified bucket does not exist</Mes (truncated...)
+ at /work/vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:111)
+[stacktrace]
+#0 /work/vendor/aws/aws-sdk-php/src/WrappedHttpHandler.php(97): Aws\\WrappedHttpHandler->parseError(Array, Object(GuzzleHttp\\Psr7\\Request), Object(Aws\\Command), Array)
+#1 /work/vendor/guzzlehttp/promises/src/Promise.php(203): Aws\\WrappedHttpHandler->Aws\\{closure}(Array)
+#2 /work/vendor/guzzlehttp/promises/src/Promise.php(174): GuzzleHttp\\Promise\\Promise::callHandler(2, Array, Array)
+#3 /work/vendor/guzzlehttp/promises/src/RejectedPromise.php(40): GuzzleHttp\\Promise\\Promise::GuzzleHttp\\Promise\\{closure}(Array)
+#4 /work/vendor/guzzlehttp/promises/src/TaskQueue.php(47): GuzzleHttp\\Promise\\RejectedPromise::GuzzleHttp\\Promise\\{closure}()
+#5 /work/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php(155): GuzzleHttp\\Promise\\TaskQueue->run()
+#6 /work/vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php(182): GuzzleHttp\\Handler\\CurlMultiHandler->tick()
+#7 /work/vendor/guzzlehttp/promises/src/Promise.php(246): GuzzleHttp\\Handler\\CurlMultiHandler->execute(true)
+#8 /work/vendor/guzzlehttp/promises/src/Promise.php(223): GuzzleHttp\\Promise\\Promise->invokeWaitFn()
+#9 /work/vendor/guzzlehttp/promises/src/Promise.php(267): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#10 /work/vendor/guzzlehttp/promises/src/Promise.php(225): GuzzleHttp\\Promise\\Promise->invokeWaitList()
+#11 /work/vendor/guzzlehttp/promises/src/Promise.php(267): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#12 /work/vendor/guzzlehttp/promises/src/Promise.php(225): GuzzleHttp\\Promise\\Promise->invokeWaitList()
+#13 /work/vendor/guzzlehttp/promises/src/Promise.php(62): GuzzleHttp\\Promise\\Promise->waitIfPending()
+#14 /work/vendor/aws/aws-sdk-php/src/S3/S3ClientTrait.php(34): GuzzleHttp\\Promise\\Promise->wait()
+#15 /work/vendor/league/flysystem-aws-s3-v3/src/AwsS3Adapter.php(611): Aws\\S3\\S3Client->upload('yanchar-bucket', 'M8tT71Qk8zRsczO...', Resource id #676, 'public-read', Array)
+#16 /work/vendor/league/flysystem-aws-s3-v3/src/AwsS3Adapter.php(393): League\\Flysystem\\AwsS3v3\\AwsS3Adapter->upload('M8tT71Qk8zRsczO...', Resource id #676, Object(League\\Flysystem\\Config))
+#17 /work/vendor/league/flysystem/src/Filesystem.php(122): League\\Flysystem\\AwsS3v3\\AwsS3Adapter->writeStream('M8tT71Qk8zRsczO...', Resource id #676, Object(League\\Flysystem\\Config))
+#18 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(209): League\\Flysystem\\Filesystem->putStream('M8tT71Qk8zRsczO...', Resource id #676, Object(League\\Flysystem\\Config))
+#19 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(243): Illuminate\\Filesystem\\FilesystemAdapter->put('M8tT71Qk8zRsczO...', Resource id #676, Array)
+#20 /work/vendor/laravel/framework/src/Illuminate/Filesystem/FilesystemAdapter.php(223): Illuminate\\Filesystem\\FilesystemAdapter->putFileAs('M8tT71Qk8zRsczO...', Object(Illuminate\\Http\\UploadedFile), 'M8tT71Qk8zRsczO...', 'public')
+#21 /work/app/Http/Controllers/Api/ApiEditProfileController.php(36): Illuminate\\Filesystem\\FilesystemAdapter->putFile('', Object(Illuminate\\Http\\UploadedFile), 'public')
+#22 [internal function]: App\\Http\\Controllers\\Api\\ApiEditProfileController->__invoke(Object(App\\Http\\Requests\\EditProfileRequest))
+#23 /work/vendor/laravel/framework/src/Illuminate/Routing/Controller.php(54): call_user_func_array(Array, Array)
+#24 /work/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php(45): Illuminate\\Routing\\Controller->callAction('__invoke', Array)
+#25 /work/vendor/laravel/framework/src/Illuminate/Routing/Route.php(219): Illuminate\\Routing\\ControllerDispatcher->dispatch(Object(Illuminate\\Routing\\Route), Object(App\\Http\\Controllers\\Api\\ApiEditProfileController), '__invoke')
+#26 /work/vendor/laravel/framework/src/Illuminate/Routing/Route.php(176): Illuminate\\Routing\\Route->runController()
+#27 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(680): Illuminate\\Routing\\Route->run()
+#28 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(30): Illuminate\\Routing\\Router->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#29 /work/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php(58): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#30 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Routing\\Middleware\\ThrottleRequests->handle(Object(Illuminate\\Http\\Request), Object(Closure), 60, '1')
+#31 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#32 /work/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php(41): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#33 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Routing\\Middleware\\SubstituteBindings->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#34 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#35 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/VerifyCsrfToken.php(75): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#36 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#37 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#38 /work/vendor/laravel/framework/src/Illuminate/View/Middleware/ShareErrorsFromSession.php(49): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#39 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\View\\Middleware\\ShareErrorsFromSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#40 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#41 /work/vendor/laravel/framework/src/Illuminate/Session/Middleware/StartSession.php(56): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#42 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Session\\Middleware\\StartSession->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#43 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#44 /work/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/AddQueuedCookiesToResponse.php(37): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#45 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#46 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#47 /work/vendor/laravel/framework/src/Illuminate/Cookie/Middleware/EncryptCookies.php(66): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#48 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Cookie\\Middleware\\EncryptCookies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#49 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#50 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#51 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(682): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#52 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(657): Illuminate\\Routing\\Router->runRouteWithinStack(Object(Illuminate\\Routing\\Route), Object(Illuminate\\Http\\Request))
+#53 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(623): Illuminate\\Routing\\Router->runRoute(Object(Illuminate\\Http\\Request), Object(Illuminate\\Routing\\Route))
+#54 /work/vendor/laravel/framework/src/Illuminate/Routing/Router.php(612): Illuminate\\Routing\\Router->dispatchToRoute(Object(Illuminate\\Http\\Request))
+#55 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(176): Illuminate\\Routing\\Router->dispatch(Object(Illuminate\\Http\\Request))
+#56 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(30): Illuminate\\Foundation\\Http\\Kernel->Illuminate\\Foundation\\Http\\{closure}(Object(Illuminate\\Http\\Request))
+#57 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#58 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#59 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#60 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php(21): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#61 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#62 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#63 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php(27): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#64 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#65 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#66 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/CheckForMaintenanceMode.php(62): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#67 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Illuminate\\Foundation\\Http\\Middleware\\CheckForMaintenanceMode->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#68 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#69 /work/vendor/fideloper/proxy/src/TrustProxies.php(57): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#70 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(163): Fideloper\\Proxy\\TrustProxies->handle(Object(Illuminate\\Http\\Request), Object(Closure))
+#71 /work/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php(53): Illuminate\\Pipeline\\Pipeline->Illuminate\\Pipeline\\{closure}(Object(Illuminate\\Http\\Request))
+#72 /work/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php(104): Illuminate\\Routing\\Pipeline->Illuminate\\Routing\\{closure}(Object(Illuminate\\Http\\Request))
+#73 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(151): Illuminate\\Pipeline\\Pipeline->then(Object(Closure))
+#74 /work/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php(116): Illuminate\\Foundation\\Http\\Kernel->sendRequestThroughRouter(Object(Illuminate\\Http\\Request))
+#75 /work/public/index.php(55): Illuminate\\Foundation\\Http\\Kernel->handle(Object(Illuminate\\Http\\Request))
+#76 {main}
+"} 
+[2020-11-25 21:44:29] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"8.1 ms"} 
+[2020-11-25 21:44:29] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`user_id` as `pivot_user_id`, `relations`.`followed_id` as `pivot_followed_id` from `users` inner join `relations` on `users`.`id` = `relations`.`followed_id` where `relations`.`user_id` in (1) and `users`.`deleted_at` is null","time":"1.82 ms"} 
+[2020-11-25 21:44:29] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`followed_id` as `pivot_followed_id`, `relations`.`user_id` as `pivot_user_id` from `users` inner join `relations` on `users`.`id` = `relations`.`user_id` where `relations`.`followed_id` in (1) and `users`.`deleted_at` is null","time":"2.03 ms"} 
+[2020-11-25 21:44:31] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"11.82 ms"} 
+[2020-11-25 21:44:31] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`user_id` = 1 and `steps`.`user_id` is not null and `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"2.86 ms"} 
+[2020-11-25 21:44:31] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"4.77 ms"} 
+[2020-11-25 21:44:31] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"7.74 ms"} 
+[2020-11-25 21:47:23] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"14.86 ms"} 
+[2020-11-25 21:47:23] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"16.98 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"52.23 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"38.76 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"6.81 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"10.85 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `categories`","time":"6.78 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"10.17 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `challenges` where `challenges`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"2.55 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `clears` where `clears`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"1.16 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"12.71 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`user_id` as `pivot_user_id`, `relations`.`followed_id` as `pivot_followed_id` from `users` inner join `relations` on `users`.`id` = `relations`.`followed_id` where `relations`.`user_id` in (1) and `users`.`deleted_at` is null","time":"4.52 ms"} 
+[2020-11-25 21:47:26] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`followed_id` as `pivot_followed_id`, `relations`.`user_id` as `pivot_user_id` from `users` inner join `relations` on `users`.`id` = `relations`.`user_id` where `relations`.`followed_id` in (1) and `users`.`deleted_at` is null","time":"2.98 ms"} 
+[2020-11-25 21:47:28] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"14.18 ms"} 
+[2020-11-25 21:47:28] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`user_id` = 1 and `steps`.`user_id` is not null and `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"9.21 ms"} 
+[2020-11-25 21:47:28] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"6.09 ms"} 
+[2020-11-25 21:47:28] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"2.03 ms"} 
+[2020-11-25 21:47:35] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"12.36 ms"} 
+[2020-11-25 21:47:35] local.DEBUG: SQL {"sql":"select count(*) as aggregate from `users` where `email` = 's.ryu1135@gmail.com' and `id` <> '1' and `deleted_at` is null","time":"1.62 ms"} 
+[2020-11-25 21:47:36] local.DEBUG: SQL {"sql":"update `users` set `pic` = 'https://s3.ap-northeast-1.amazonaws.com/step-rs.com/tpNurZddYvOI8voIyc8l6UGc1C3MRDUbFdwhuSiU.jpeg', `introduction` = 'null', `users`.`updated_at` = '2020-11-25 21:47:36' where `id` = 1","time":"33.74 ms"} 
+[2020-11-25 21:47:40] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"10.34 ms"} 
+[2020-11-25 21:47:40] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"11.45 ms"} 
+[2020-11-25 21:47:42] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"37.52 ms"} 
+[2020-11-25 21:47:42] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"16.47 ms"} 
+[2020-11-25 21:47:42] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"1.47 ms"} 
+[2020-11-25 21:47:42] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"44.55 ms"} 
+[2020-11-25 21:47:42] local.DEBUG: SQL {"sql":"select * from `challenges` where `challenges`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"15.17 ms"} 
+[2020-11-25 21:47:42] local.DEBUG: SQL {"sql":"select * from `clears` where `clears`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"3.04 ms"} 
+[2020-11-25 21:47:42] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"99.96 ms"} 
+[2020-11-25 21:47:42] local.DEBUG: SQL {"sql":"select * from `categories`","time":"2.52 ms"} 
+[2020-11-25 21:47:43] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"13.61 ms"} 
+[2020-11-25 21:47:43] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`user_id` as `pivot_user_id`, `relations`.`followed_id` as `pivot_followed_id` from `users` inner join `relations` on `users`.`id` = `relations`.`followed_id` where `relations`.`user_id` in (1) and `users`.`deleted_at` is null","time":"48.67 ms"} 
+[2020-11-25 21:47:43] local.DEBUG: SQL {"sql":"select `users`.*, `relations`.`followed_id` as `pivot_followed_id`, `relations`.`user_id` as `pivot_user_id` from `users` inner join `relations` on `users`.`id` = `relations`.`user_id` where `relations`.`followed_id` in (1) and `users`.`deleted_at` is null","time":"5.74 ms"} 
+[2020-11-25 21:47:44] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"8.95 ms"} 
+[2020-11-25 21:47:44] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`user_id` = 1 and `steps`.`user_id` is not null and `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"4.65 ms"} 
+[2020-11-25 21:47:44] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"2.04 ms"} 
+[2020-11-25 21:47:44] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"2.79 ms"} 
+[2020-11-25 21:47:46] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"24.59 ms"} 
+[2020-11-25 21:47:46] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"23.53 ms"} 
+[2020-11-25 21:47:48] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"22.46 ms"} 
+[2020-11-25 21:47:48] local.DEBUG: SQL {"sql":"select * from `categories`","time":"3.13 ms"} 
+[2020-11-25 21:47:48] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"37.58 ms"} 
+[2020-11-25 21:47:48] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"6.44 ms"} 
+[2020-11-25 21:47:48] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"4.06 ms"} 
+[2020-11-25 21:47:48] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"1.51 ms"} 
+[2020-11-25 21:47:48] local.DEBUG: SQL {"sql":"select * from `challenges` where `challenges`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"7.37 ms"} 
+[2020-11-25 21:47:48] local.DEBUG: SQL {"sql":"select * from `clears` where `clears`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"1.96 ms"} 
+[2020-11-25 21:47:50] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"10.3 ms"} 
+[2020-11-25 21:47:50] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 3","time":"2.05 ms"} 
+[2020-11-25 22:10:07] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"28.04 ms"} 
+[2020-11-25 22:10:07] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"9.15 ms"} 
+[2020-11-25 22:10:09] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"11.36 ms"} 
+[2020-11-25 22:10:09] local.DEBUG: SQL {"sql":"select * from `steps` where `steps`.`deleted_at` is null order by `created_at` desc limit 10 offset 0","time":"3.5 ms"} 
+[2020-11-25 22:10:09] local.DEBUG: SQL {"sql":"select * from `users` where `users`.`id` in (1) and `users`.`deleted_at` is null","time":"1.46 ms"} 
+[2020-11-25 22:10:09] local.DEBUG: SQL {"sql":"select * from `users` where `id` = 1 and `users`.`deleted_at` is null limit 1","time":"23.03 ms"} 
+[2020-11-25 22:10:09] local.DEBUG: SQL {"sql":"select * from `categories` where `categories`.`id` in (2, 3)","time":"5.11 ms"} 
+[2020-11-25 22:10:09] local.DEBUG: SQL {"sql":"select * from `challenges` where `challenges`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"9.67 ms"} 
+[2020-11-25 22:10:09] local.DEBUG: SQL {"sql":"select * from `clears` where `clears`.`step_id` in (1, 2, 3) and `user_id` = 1","time":"2.47 ms"} 
+[2020-11-25 22:10:09] local.DEBUG: SQL {"sql":"select * from `categories`","time":"4.53 ms"} 

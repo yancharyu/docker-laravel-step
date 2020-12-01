@@ -3649,6 +3649,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -68144,7 +68148,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "p-mypage__picContainer" }, [
         _c("i", {
-          staticClass: "fas fa-cog p-mypage__optionIcon",
+          staticClass: "fas fa-user p-mypage__menuIcon",
           on: { click: _vm.showSidebar }
         }),
         _vm._v(" "),
@@ -68471,30 +68475,45 @@ var render = function() {
         _vm._v(_vm._s(_vm.getUser.name))
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "p-mypageSidebar__relationsContainer" },
-        [
-          _c(
-            "router-link",
-            {
-              staticClass: "p-mypageSidebar__follow",
-              attrs: { to: { name: "follow" } }
-            },
-            [_vm._v(_vm._s(_vm.followings) + _vm._s(_vm.$t("フォロー")))]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "p-mypageSidebar__follower",
-              attrs: { to: { name: "follower" } }
-            },
-            [_vm._v(_vm._s(_vm.followers) + _vm._s(_vm.$t("フォロワー")))]
-          )
-        ],
-        1
-      ),
+      _c("div", { staticClass: "p-mypageSidebar__relationsContainer" }, [
+        _c(
+          "li",
+          {
+            staticClass: "p-mypageSidebar__listItem",
+            on: { click: _vm.closeSidebar }
+          },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "p-mypageSidebar__follow",
+                attrs: { to: { name: "follow" } }
+              },
+              [_vm._v(_vm._s(_vm.followings) + _vm._s(_vm.$t("フォロー")))]
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          {
+            staticClass: "p-mypageSidebar__listItem",
+            on: { click: _vm.closeSidebar }
+          },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "p-mypageSidebar__follower",
+                attrs: { to: { name: "follower" } }
+              },
+              [_vm._v(_vm._s(_vm.followers) + _vm._s(_vm.$t("フォロワー")))]
+            )
+          ],
+          1
+        )
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "p-mypageSidebar__contentContainer" }, [
         _c("ul", { staticClass: "p-mypageSidebar__list" }, [

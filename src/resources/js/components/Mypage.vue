@@ -4,7 +4,7 @@
     <vue-sidebar-mypage></vue-sidebar-mypage>
 
     <div class="p-mypage__picContainer">
-      <i class="fas fa-cog p-mypage__optionIcon" @click="showSidebar"></i>
+      <i class="fas fa-user p-mypage__menuIcon" @click="showSidebar"></i>
       <img :src="getUserProfilePic" alt="" class="p-mypage__pic" />
       <p class="p-mypage__name">{{ getUser.name }}</p>
     </div>

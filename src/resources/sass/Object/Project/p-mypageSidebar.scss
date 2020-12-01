@@ -66,14 +66,25 @@
     flex-flow: row wrap;
     justify-content: space-around;
     margin-bottom: $space_l;
+    list-style: none;
     @include mq(md) {
-      display: none;
+      margin-bottom: 0;
+    }
+    & > .p-mypageSidebar__listItem > a {
+      border-bottom: none;
     }
   }
   &__follow,
   &__follower {
     &:hover {
       text-decoration: underline;
+    }
+    @include mq(md) {
+      font-size: $font-size_xs;
+
+      &:hover {
+        text-decoration: none;
+      }
     }
   }
 

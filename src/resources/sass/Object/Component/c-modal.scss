@@ -39,8 +39,8 @@
       }
     }
     @include mq(md) {
-      width: 60%;
-      height: 160px;
+      width: 65%;
+      min-height: 210px;
     }
   }
   &__title {

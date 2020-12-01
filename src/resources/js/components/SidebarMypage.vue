@@ -8,12 +8,16 @@
     <vue-user-profile-pic :user="getUser"></vue-user-profile-pic>
     <p class="p-mypageSidebar__username">{{ getUser.name }}</p>
     <div class="p-mypageSidebar__relationsContainer">
-      <router-link :to="{ name: 'follow' }" class="p-mypageSidebar__follow"
-        >{{ followings }}{{ $t('フォロー') }}</router-link
-      >
-      <router-link :to="{ name: 'follower' }" class="p-mypageSidebar__follower"
-        >{{ followers }}{{ $t('フォロワー') }}</router-link
-      >
+      <li class="p-mypageSidebar__listItem" @click="closeSidebar">
+        <router-link :to="{ name: 'follow' }" class="p-mypageSidebar__follow"
+          >{{ followings }}{{ $t('フォロー') }}</router-link
+        >
+      </li>
+      <li class="p-mypageSidebar__listItem" @click="closeSidebar">
+        <router-link :to="{ name: 'follower' }" class="p-mypageSidebar__follower"
+          >{{ followers }}{{ $t('フォロワー') }}</router-link
+        >
+      </li>
     </div>
     <div class="p-mypageSidebar__contentContainer">
       <ul class="p-mypageSidebar__list">
